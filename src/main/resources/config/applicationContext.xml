@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+    <!--引入其它配置文件到spring框架 由spring框架统一管理-->
+    <import resource="spring-mybatis.xml"/>
+    <import resource="spring-mvc.xml"/>
+    <!--<import resource="spring-shiro.xml"/>-->
+    <!--整合事务-->
+    <bean id="transactionManger" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <constructor-arg ref="dataSource"/>
+    </bean>
+    <!--事务配置增强-->
+    <tx:advice id="txAdvice" transaction-manager="transactionManger">
+        <tx:attributes>
+            <!--propagation事务的传播特性，required没有事务就创建一个 有就加入-->
+            <!--<tx:method name="select*" read-only="true"></tx:method>-->
+            <tx:method name="*" propagation="REQUIRED"/>
+        </tx:attributes>
+    </tx:advice>
+    <!--aop配置-->
+    <aop:config>
+        <aop:pointcut id="txPointCut" expression="execution(* com.zlybl.mapper.*.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="txPointCut"/>
+    </aop:config>
+</beans>

@@ -39,3 +39,4 @@ build/
 
 ### Project ###
 /.idea/encodings.xml
+/src/main/resources/config/dbconfig.properties
