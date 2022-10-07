@@ -3,5 +3,36 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zlybl.mapper.HistoryMapper">
-    
+    <!--查询所有借书记录-->
+    <select id="selectAllHistory" resultType="History">
+        SELECT * FROM history
+    </select>
+    <!--根据条件查询多条图书记录-->
+    <select id="selectHistorysByConditions" resultType="History">
+        SELECT * FROM history WHERE (historyId LIKE CONCAT('%',#{historyId},'%') OR CONCAT('%',#{historyId},'%')='')
+                                AND (bookId LIKE CONCAT('%',#{bookId},'%') OR CONCAT('%',#{bookId},'%')='')
+                                AND (UserId LIKE CONCAT('%',#{UserId},'%') OR CONCAT('%',#{UserId},'%')='')
+                                AND (borrowedTime LIKE CONCAT('%',#{borrowedTime},'%') OR CONCAT('%',#{borrowedTime},'%')='')
+                                AND (returnedTime LIKE CONCAT('%',#{returnedTime},'%') OR CONCAT('%',#{returnedTime},'%')='')
+    </select>
+    <!--根据条件查询单挑图书记录-->
+    <select id="selectHistoryByConditions" resultType="History">
+        SELECT * FROM history WHERE (historyId LIKE CONCAT('%',#{historyId},'%') OR CONCAT('%',#{historyId},'%')='')
+                                AND (bookId LIKE CONCAT('%',#{bookId},'%') OR CONCAT('%',#{bookId},'%')='')
+                                AND (UserId LIKE CONCAT('%',#{UserId},'%') OR CONCAT('%',#{UserId},'%')='')
+                                AND (borrowedTime LIKE CONCAT('%',#{borrowedTime},'%') OR CONCAT('%',#{borrowedTime},'%')='')
+                                AND (returnedTime LIKE CONCAT('%',#{returnedTime},'%') OR CONCAT('%',#{returnedTime},'%')='')
+    </select>
+    <!--增加借书记录-->
+    <insert id="addHistory">
+        INSERT INTO history(historyId,bookId,UserId,borrowedTime,returnedTime) VALUES (#{historyId},#{bookId},#{UserId},#{borrowedTime},#{returnedTime})
+    </insert>
+    <!--修改借书记录-->
+    <update id="updateHistory">
+        UPDATE history SET historyId=#{historyId},bookId=#{bookId},UserId=#{UserId},borrowedTime=#{borrowedTime},returnedTime=#{returnedTime}
+    </update>
+    <!--删除借书记录-->
+    <delete id="deleteHistory">
+        DELETE FROM history WHERE historyId=#{historyId}
+    </delete>
 </mapper>
