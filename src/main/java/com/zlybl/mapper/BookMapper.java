@@ -16,9 +16,10 @@ public interface BookMapper {
 
     //增加书籍
     int addBook(Book book);
+
     //修改数据
     int updateBook(Book book);
 
     //删除数据
-    int deleteBook(int bookld);
+    int deleteBook(int bookId);
 }

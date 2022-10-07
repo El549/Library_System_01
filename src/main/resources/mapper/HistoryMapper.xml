@@ -25,11 +25,11 @@
     </select>
     <!--增加借书记录-->
     <insert id="addHistory">
-        INSERT INTO history(historyId,bookId,UserId,borrowedTime,returnedTime) VALUES (#{historyId},#{bookId},#{UserId},#{borrowedTime},#{returnedTime})
+        INSERT INTO history(bookId,UserId,borrowedTime,returnedTime) VALUES (#{bookId},#{UserId},#{borrowedTime},#{returnedTime})
     </insert>
     <!--修改借书记录-->
     <update id="updateHistory">
-        UPDATE history SET historyId=#{historyId},bookId=#{bookId},UserId=#{UserId},borrowedTime=#{borrowedTime},returnedTime=#{returnedTime}
+        UPDATE history SET bookId=#{bookId},UserId=#{UserId},borrowedTime=#{borrowedTime},returnedTime=#{returnedTime}
     </update>
     <!--删除借书记录-->
     <delete id="deleteHistory">

@@ -12,7 +12,7 @@
 
     <!--增加方法-->
     <insert id="addManager">
-        insert into manager (managerId,managerName,managerPassword) values (#{managerId},#{managerName},#{managerPassword})
+        insert into manager (managerName,managerPassword) values (#{managerName},#{managerPassword})
     </insert>
 
     <!--修改方法-->
@@ -24,7 +24,5 @@
     <delete id="deleteManager">
         delete from manager where managerId=#{managerId}
     </delete>
-
-
 
 </mapper>
