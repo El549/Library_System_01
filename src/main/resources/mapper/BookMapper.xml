@@ -27,7 +27,7 @@
     </select>
     <!--增加书籍-->
     <insert id="addBook">
-        insert into book(bookCover,bookName,author,press,bookClass,bookStatus) values (#{bookCover},#{bookName},#{author},#{press},#{bookClass},#{bookStatus})
+        insert into book(bookCover,bookName,author,press,bookClass) values (#{bookCover},#{bookName},#{author},#{press},#{bookClass})
     </insert>
     <!--修改数据-->
     <update id="updateBook">
