@@ -3,5 +3,28 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zlybl.mapper.ManagerMapper">
-    
+
+    <!--可选条件查询方法-->
+    <select id="selectManagerByConditions" resultType="Manager">
+        select * from manager where (managerId like CONCAT('%',#{managerId},'%') or CONCAT('%',#{managerId},'%')='')
+                                and (managerPassword like CONCAT('%',#{managerPassword},'%') or CONCAT('%',#{managerPassword},'%')='')
+    </select>
+
+    <!--增加方法-->
+    <insert id="addManager">
+        insert into manager (managerId,managerName,managerPassword) values (#{managerId},#{managerName},#{managerPassword})
+    </insert>
+
+    <!--修改方法-->
+    <update id="updateManager">
+        update manager set managerName=#{managerName},managerPassword=#{managerPassword} where managerId=#{managerId}
+    </update>
+
+    <!--删除-->
+    <delete id="deleteManager">
+        delete from manager where managerId=#{managerId}
+    </delete>
+
+
+
 </mapper>
