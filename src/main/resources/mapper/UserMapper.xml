@@ -10,27 +10,27 @@
 
     <!--根据多个条件:用户名或密码查询一组用户-->
     <select id="selectUsersByConditions" resultType="User">
-        SELECT * FROM user WHERE (user_name like CONCAT('%',#{userName},'%') OR CONCAT('%',#{userName},'%')='')
-                             AND (user_password like CONCAT('%',#{userPassword},'%') OR CONCAT('%',#{userPassword},'%')='')
+        SELECT * FROM user WHERE (userName like CONCAT('%',#{userName},'%') OR CONCAT('%',#{userName},'%')='')
+                             AND (userPassword like CONCAT('%',#{userPassword},'%') OR CONCAT('%',#{userPassword},'%')='')
     </select>
 
 <!--    根据多个条件：用户名或密码查询单个用户-->
     <select id="selectUserByConditions" resultType="User">
-        SELECT * FROM user WHERE (user_name like CONCAT('%',#{userName},'%') OR CONCAT('%',#{userName},'%')='')
-                             AND (user_password like CONCAT('%',#{userPassword},'%') OR CONCAT('%',#{userPassword},'%')='')
+        SELECT * FROM user WHERE (userName like CONCAT('%',#{userName},'%') OR CONCAT('%',#{userName},'%')='')
+                             AND (userPassword like CONCAT('%',#{userPassword},'%') OR CONCAT('%',#{userPassword},'%')='')
     </select>
 <!--添加用户-->
     <insert id="addUser">
-        insert into user (user_id,user_name,user)password values (#{userId},#{userName},#{userPassword})
+        insert into user (userId,useNname,user)password values (#{userId},#{userName},#{userPassword})
     </insert>
 
     <!--修改用户信息,仅在用户界面可以修改。所以直接传参用户对象-->
     <update id="updateUser">
-        update user set user_name=#{userName},user_password=#{userPassword} where user_id=#{userId}
+        update user set userName=#{userName},userPassword=#{userPassword} where userId=#{userId}
     </update>
 
     <!--根据id删除用户-->
     <delete id="deleteUser">
-        delete from book where user_id=#{userId}
+        delete from book where userId=#{userId}
     </delete>
 </mapper>
