@@ -21,7 +21,7 @@
     </select>
 <!--添加用户-->
     <insert id="addUser">
-        insert into user (userId,useNname,user)password values (#{userId},#{userName},#{userPassword})
+        insert into user (userId,userNname,user)password values (#{userId},#{userName},#{userPassword})
     </insert>
 
     <!--修改用户信息,仅在用户界面可以修改。所以直接传参用户对象-->
