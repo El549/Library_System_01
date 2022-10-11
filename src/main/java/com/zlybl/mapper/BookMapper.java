@@ -11,7 +11,7 @@ public interface BookMapper {
     //可选择条件查询
     List<Book> selectBooksByConditions(Book book);
 
-    //通过id查询书籍
+    //根据书籍id查找书籍
     Book selectBookByBookId(int bookId);
 
     //增加书籍

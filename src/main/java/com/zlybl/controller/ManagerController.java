@@ -12,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -43,6 +42,7 @@ public class ManagerController {
         }
         return mv;
     }
+    
     //获得管理员信息
     @RequestMapping("showManagerInfo_method")
     public String showManagerInfo(int managerId, Model model){
@@ -52,12 +52,14 @@ public class ManagerController {
         model.addAttribute("manager",manager);
         return "managerInfo";
     }
+    
     //修改管理员信息
     @RequestMapping("changeManagerInfo_method")
     public String changeManagerInfo(Manager manager){
         System.out.println(manager);
         return managerservice.changeManagerInfo(manager)>0?"redirect:mLogin":"error";
     }
+    
     //查询所有书籍
     @RequestMapping("/showAllBook_method")
     public ModelAndView showAllBook_MC(){
@@ -73,6 +75,7 @@ public class ManagerController {
         mv.setViewName("manageBook");
         return mv;
     }
+    
     //按条件查询多本书籍
     @RequestMapping("/showBooks")
     public ModelAndView showBookByConditions_MC(Book book){
@@ -86,6 +89,7 @@ public class ManagerController {
         mv.setViewName("manageBook");
         return mv;
     }
+    
     //图书高级检索
     @RequestMapping("/foundBook_method")
     public ModelAndView foundBook(Book book){
@@ -99,12 +103,14 @@ public class ManagerController {
         mv.setViewName("manageBook");
         return mv;
     }
+    
     //删除书籍
     @RequestMapping("/deleteBook_method")
     public String deleteBook_MC(int bookId){
         System.out.println(bookId);
         return managerservice.deleteBook_MS(bookId)>0?"redirect:showAllBook_method":"error";
     }
+    
     //查询所有用户
     @RequestMapping("/showAllUser_method")
     public ModelAndView showAllUser_MC(){
@@ -141,16 +147,70 @@ public class ManagerController {
         mv.setViewName("manageHistory");
         return mv;
     }
+    
     //删除借阅记录
     @RequestMapping("/deleteHistory_method")
     public String deleteHistory_MC(int historyId){
         System.out.println(historyId);
         return managerservice.deleteHistory_MS(historyId)>0?"redirect:showAllHistory_method":"error";
     }
+
+    //添加书籍
+    @RequestMapping("/addBook_method")
+    public String addBook_MC(Book book){
+        return managerService.addBook_MS(book)>0?"test":"addBook";
+    }
+
+    //查询单本书籍
+    @RequestMapping("/showBookByBookId_method")
+    public String showBookByBookId_MC(int bookId, Model model){
+        Book book = managerService.showBookByBookId_MS(bookId);
+        model.addAttribute("book",book);
+        return "updateBook";
+    }
+    //修改书籍
+    @RequestMapping("/updateBook_method")
+    public String updateBook_MC(Book book){
+        return managerService.updateBook_MS(book)>0?"test":"updateBook";
+    }
+
+    //添加用户
+    @RequestMapping("/addUser_method")
+    public String addUser_MC(User user){
+        return managerService.addUser_MS(user)>0?"test":"addUser";
+    }
+
+    //查询单个用户
+    @RequestMapping("/showUserByUserId_method")
+    public String showUserByUserId(int userId,Model model){
+        User user = managerService.showUserByUserId(userId);
+        model.addAttribute("user",user);
+        return "updateUser";
+    }
+    
+    //修改用户
+    @RequestMapping("/updateUser_method")
+    public String updateUser_MC(User user){
+        return managerService.changeUserPassword(user)>0?"test":"updateUser";
+    }
+
+    //查询单条借阅记录
+    @RequestMapping("/showHistoryByHistoryId_method")
+    public String showHistoryByHistoryId_MC(int historyId,Model model){
+        History history = managerService.showHistoryByHistoryId_MS(historyId);
+        model.addAttribute("history",history);
+        return "updateHistory";
+    }
+    
+    //修改借阅记录
+    @RequestMapping("/updateHistory_method")
+    public String updateHistory_MC(History history){
+        return managerService.updateHistory_MS(history)>0?"test":"updateHistory";
+    }
+
     //页面通用跳转方法
     @RequestMapping("{page}")
     public String toPage(@PathVariable() String page){
         return page;
     }
-
 }

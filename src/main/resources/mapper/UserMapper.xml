@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zlybl.mapper.UserMapper">
-<!--    查询所有用户-->
+    <!--查询所有用户-->
     <select id="selectAllUser" resultType="User">
         select * from user
     </select>
@@ -17,6 +17,7 @@
     <select id="userLoginCheck" resultType="User">
         select * from user where user_id=#{userId} and user_password=#{userPassword}
     </select>
+
     <!--添加用户-->
     <insert id="addUser">
         insert into user (user_name,user_password) values (#{userName},#{userPassword})

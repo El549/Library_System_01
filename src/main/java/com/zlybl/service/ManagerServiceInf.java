@@ -22,7 +22,6 @@ public interface ManagerServiceInf {
     //按条件查询多本书籍
     List<Book> showBookByConditions_MS(Book book);
 
-    //新增
     //按书的ID查询单本书籍
     Book showBookByBookId_MS(int bookId);
 
@@ -41,6 +40,9 @@ public interface ManagerServiceInf {
     //根据ID显示单个用户
     User showUserByUserId(int userId);
 
+    //添加用户
+    int addUser_MS(User user);
+
     //修改用户密码
     int changeUserPassword(User user);
     //增加用户
@@ -55,9 +57,8 @@ public interface ManagerServiceInf {
     //根据条件显示多条借阅记录
     List<History> showHistoryByConditions_MS(History history);
 
-    //新增
     //根据ID显示单条借阅记录
-    History showHistoryByHistoryId_MS(History history);
+    History showHistoryByHistoryId_MS(int historyId);
 
     //修改借阅记录
     int updateHistory_MS(History history);

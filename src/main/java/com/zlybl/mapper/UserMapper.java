@@ -8,6 +8,7 @@ public interface UserMapper {
 
     //查询所有用户
     List<User> selectAllUser();
+    
     //登录
     User userLoginCheck(User user);
 
