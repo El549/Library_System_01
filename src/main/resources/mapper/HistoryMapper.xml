@@ -3,30 +3,36 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zlybl.mapper.HistoryMapper">
+
     <!--查询所有借书记录-->
     <select id="selectAllHistory" resultType="History">
         SELECT * FROM history
     </select>
-    <!--根据条件查询多条图书记录-->
+    
+    <!--根据条件查询多条借书记录-->
     <select id="selectHistorysByConditions" resultType="History">
         SELECT * FROM history WHERE (book_id LIKE CONCAT('%',#{bookId},'%') OR CONCAT('%',#{bookId},'%')='')
                                 AND (user_id LIKE CONCAT('%',#{UserId},'%') OR CONCAT('%',#{userId},'%')='')
                                 AND (borrowed_time LIKE CONCAT('%',#{borrowedTime},'%') OR CONCAT('%',#{borrowedTime},'%')='')
                                 AND (returned_time LIKE CONCAT('%',#{returnedTime},'%') OR CONCAT('%',#{returnedTime},'%')='')
     </select>
-    <!--根据id查询单条图书记录-->
+    
+    <!--根据id查询单条借书记录-->
     <select id="selectHistoryByHistoryId" resultType="History">
         SELECT * FROM history WHERE (history_id = #{historyId})
     </select>
+    
     <!--增加借书记录-->
     <insert id="addHistory">
-        INSERT INTO history(book_id,user_id,borrowedTime,returnedTime) VALUES (#{bookId},#{userId},#{borrowedTime},#{returnedTime})
+        INSERT INTO history(book_id,uer_id,borrowed_time,returned_time) VALUES (#{bookId},#{userId},#{borrowedTime},#{returnedTime})
     </insert>
+    
     <!--修改借书记录-->
     <update id="updateHistory">
-        UPDATE history SET book_id=#{bookId},user_id=#{userId},borrowed_time=#{borrowedTime},returned_time=#{returnedTime}
-                       WHERE history_id=#{historyId}
+        UPDATE history SET book_id=#{bookId},user_id=#{userId},borrowed_time=#{borrowedTime},returned_time=#{returnedTime} 
+                       WHERE history_id = #{historyId}
     </update>
+    
     <!--删除借书记录-->
     <delete id="deleteHistory">
         DELETE FROM history WHERE history_id=#{historyId}

@@ -2,6 +2,9 @@ package com.zlybl.service;
 
 import com.zlybl.mapper.BookMapper;
 import com.zlybl.mapper.HistoryMapper;
+
+import com.zlybl.mapper.ManagerMapper;
+
 import com.zlybl.mapper.UserMapper;
 import com.zlybl.pojo.Book;
 import com.zlybl.pojo.History;
@@ -16,36 +19,47 @@ import java.util.List;
 public class ManagerServiceImpl implements ManagerServiceInf{
 
     @Autowired
-    private BookMapper bookMapper;
-
+    private ManagerMapper managermapper;
+    
     @Autowired
-    private UserMapper userMapper;
-
+    private BookMapper bookmapper;
+    
     @Autowired
-    private HistoryMapper historyMapper;
+    private UserMapper usermapper;
+    
+    @Autowired
+    private HistoryMapper historymapper;
 
     //管理员登录方法
     @Override
     public Manager managerLogin(Manager manager) {
-        return null;
+        Manager m = managermapper.managerLoginCheck(manager);
+        System.out.println(m);
+        return m;
+    }
+
+    //根据id查询管理员
+    @Override
+    public Manager selectManagerByManagerId_MS(int managerId) {
+        return managermapper.selectManagerByManagerId(managerId);
     }
 
     //修改管理员密码
     @Override
-    public int changeManagerPassword(String managerPassword) {
-        return 0;
+    public int changeManagerInfo(Manager manager) {
+        return managermapper.updateManager(manager);
     }
 
     //显示所有书籍
     @Override
     public List<Book> showAllBook_MS() {
-        return null;
+        return bookmapper.selectAllBook();
     }
 
     //按条件查询多本书籍
     @Override
     public List<Book> showBookByConditions_MS(Book book) {
-        return null;
+        return bookmapper.selectBooksByConditions(book);
     }
 
     //按书的ID查询单本书籍
@@ -69,13 +83,14 @@ public class ManagerServiceImpl implements ManagerServiceInf{
     //删除书籍
     @Override
     public int deleteBook_MS(int bookId) {
-        return 0;
+
+        return bookmapper.deleteBook(bookId);
     }
 
     //显示所有用户
     @Override
     public List<User> showAllUser() {
-        return null;
+        return usermapper.selectAllUser();
     }
 
     //根据ID显示单个用户
@@ -98,14 +113,19 @@ public class ManagerServiceImpl implements ManagerServiceInf{
 
     //删除用户
     @Override
-    public int deleteUser(int userId) {
+    public int addUser(User user) {
         return 0;
     }
 
     //显示所有借阅记录
     @Override
+    public int deleteUser(int userId) {
+        return usermapper.deleteUser(userId);
+    }
+
+    @Override
     public List<History> showAllHistory_MS() {
-        return null;
+        return historymapper.selectAllHistory();
     }
 
     //根据条件显示多条借阅记录
@@ -128,7 +148,7 @@ public class ManagerServiceImpl implements ManagerServiceInf{
 
     //删除借阅记录
     @Override
-    public int deleteHistory_MS(int historyID) {
-        return 0;
+    public int deleteHistory_MS(int historyId) {
+        return historymapper.deleteHistory(historyId);
     }
 }

@@ -10,9 +10,11 @@ import java.util.List;
 public interface ManagerServiceInf {
     //管理员登录方法
     Manager managerLogin(Manager manager);
+    //查询一个管理员
+    Manager selectManagerByManagerId_MS(int managerId);
 
     //修改管理员密码
-    int changeManagerPassword(String managerPassword);
+    int changeManagerInfo(Manager manager);
 
     //显示所有书籍
     List<Book> showAllBook_MS();
@@ -43,6 +45,8 @@ public interface ManagerServiceInf {
 
     //修改用户密码
     int changeUserPassword(User user);
+    //增加用户
+    int addUser(User user);
 
     //删除用户
     int deleteUser(int userId);
