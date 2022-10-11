@@ -15,7 +15,7 @@
 <body>
 
 <div  style="text-align: center" >
-
+    <a class="btn btn-primary" href="${pageContext.request.contextPath}/manager/addUser">添加</a>
     <%--要展示数据  使用表格--%>
     <table class="table table-striped table-bordered table-condensed" style="width: 70%;margin: auto;">
         <c:forEach var="u" items="#{ulist}">
@@ -23,7 +23,7 @@
                 <td rowspan="2"><img src="https://bbs.mihoyo.com/mainPage/ys-logo-v2.png"></td>
                 <td>${u.userName}</td>
                 <td>${u.userId}</td>
-                <td><a href="#">修改</a></td>
+                <td><a class="btn btn-danger btn-xs" href="showUserByUserId_method?userId=${u.userId}">修改</a></td>
             </tr>
             <tr>
                 <td colspan="2"><p>系统默认签名,送给每一个小可爱o(*￣▽￣*)o</p></td>

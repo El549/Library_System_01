@@ -20,7 +20,7 @@ import java.util.List;
 public class ManagerController {
 
     @Autowired
-    private ManagerServiceInf managerservice;
+    private ManagerServiceInf managerService;
 
     //管理员登录
     @RequestMapping("/mLogin")
@@ -28,7 +28,7 @@ public class ManagerController {
         System.out.println(manager);
         ModelAndView mv = new ModelAndView();
         //调用service层的登录方法
-        Manager m = managerservice.managerLogin(manager);
+        Manager m = managerService.managerLogin(manager);
         if(m!=null){
             //把查询出来的用户放入session
             session.setAttribute("manager",m);
@@ -47,7 +47,7 @@ public class ManagerController {
     @RequestMapping("showManagerInfo_method")
     public String showManagerInfo(int managerId, Model model){
         //调用service层方法
-        Manager manager = managerservice.selectManagerByManagerId_MS(managerId);
+        Manager manager = managerService.selectManagerByManagerId_MS(managerId);
         //把查询出来的manager存入Model对象中  这样我们前端页面可以取值
         model.addAttribute("manager",manager);
         return "managerInfo";
@@ -57,7 +57,7 @@ public class ManagerController {
     @RequestMapping("changeManagerInfo_method")
     public String changeManagerInfo(Manager manager){
         System.out.println(manager);
-        return managerservice.changeManagerInfo(manager)>0?"redirect:mLogin":"error";
+        return managerService.changeManagerInfo(manager)>0?"redirect:mLogin":"error";
     }
     
     //查询所有书籍
@@ -67,7 +67,7 @@ public class ManagerController {
         ModelAndView mv = new ModelAndView();
         //调用业务逻辑层 经过处理的数据
 
-        List<Book> bookList = managerservice.showAllBook_MS();
+        List<Book> bookList = managerService.showAllBook_MS();
         //System.out.println(bookList);
         //查询过后得到的数据 应该传递到前端  把查询出来的booklist存入到modelandview对象中 方便前端取值
         mv.addObject("blist",bookList);
@@ -82,7 +82,7 @@ public class ManagerController {
         //创建ModelAndView对象
         System.out.println(book);
         ModelAndView mv = new ModelAndView();
-        List<Book> bookList = managerservice.showBookByConditions_MS(book);
+        List<Book> bookList = managerService.showBookByConditions_MS(book);
         System.out.println(bookList);
         //把查询出来的booklist存入到modelandview对象中 方便前端取值
         mv.addObject("blist",bookList);
@@ -96,7 +96,7 @@ public class ManagerController {
         //创建ModelAndView对象
         System.out.println(book);
         ModelAndView mv = new ModelAndView();
-        List<Book> bookList = managerservice.showBookByConditions_MS(book);
+        List<Book> bookList = managerService.showBookByConditions_MS(book);
         System.out.println(bookList);
         //把查询出来的booklist存入到modelandview对象中 方便前端取值
         mv.addObject("blist",bookList);
@@ -108,7 +108,7 @@ public class ManagerController {
     @RequestMapping("/deleteBook_method")
     public String deleteBook_MC(int bookId){
         System.out.println(bookId);
-        return managerservice.deleteBook_MS(bookId)>0?"redirect:showAllBook_method":"error";
+        return managerService.deleteBook_MS(bookId)>0?"redirect:showAllBook_method":"error";
     }
     
     //查询所有用户
@@ -117,7 +117,7 @@ public class ManagerController {
         //创建ModelAndView对象
         ModelAndView mv = new ModelAndView();
         //调用业务逻辑层 经过处理的数据
-        List<User> userList = managerservice.showAllUser();
+        List<User> userList = managerService.showAllUser();
         System.out.println(userList);
         //把查询出来的userlist存入到modelandview对象中 方便前端取值
         mv.addObject("ulist",userList);
@@ -130,7 +130,7 @@ public class ManagerController {
     @RequestMapping("/deleteUser_method")
     public String deleteUser_MC(int userId){
         System.out.println(userId);
-        return managerservice.deleteUser(userId)>0?"redirect:showAllUser_method":"error";
+        return managerService.deleteUser(userId)>0?"redirect:showAllUser_method":"error";
     }
 
     //查询所有借阅记录
@@ -139,7 +139,7 @@ public class ManagerController {
         //创建ModelAndView对象
         ModelAndView mv = new ModelAndView();
         //调用业务逻辑层 经过处理的数据
-        List<History> historyList = managerservice.showAllHistory_MS();
+        List<History> historyList = managerService.showAllHistory_MS();
         System.out.println(historyList);
         //把查询出来的historyList存入到modelandview对象中,方便前端取值
         mv.addObject("hlist",historyList);
@@ -152,13 +152,13 @@ public class ManagerController {
     @RequestMapping("/deleteHistory_method")
     public String deleteHistory_MC(int historyId){
         System.out.println(historyId);
-        return managerservice.deleteHistory_MS(historyId)>0?"redirect:showAllHistory_method":"error";
+        return managerService.deleteHistory_MS(historyId)>0?"redirect:showAllHistory_method":"error";
     }
 
     //添加书籍
     @RequestMapping("/addBook_method")
     public String addBook_MC(Book book){
-        return managerService.addBook_MS(book)>0?"test":"addBook";
+        return managerService.addBook_MS(book)>0?"redirect:showAllBook_method":"addBook";
     }
 
     //查询单本书籍
@@ -171,13 +171,13 @@ public class ManagerController {
     //修改书籍
     @RequestMapping("/updateBook_method")
     public String updateBook_MC(Book book){
-        return managerService.updateBook_MS(book)>0?"test":"updateBook";
+        return managerService.updateBook_MS(book)>0?"redirect:showAllBook_method":"updateBook";
     }
 
     //添加用户
     @RequestMapping("/addUser_method")
     public String addUser_MC(User user){
-        return managerService.addUser_MS(user)>0?"test":"addUser";
+        return managerService.addUser_MS(user)>0?"redirect:showAllUser_method":"addUser";
     }
 
     //查询单个用户
@@ -191,7 +191,7 @@ public class ManagerController {
     //修改用户
     @RequestMapping("/updateUser_method")
     public String updateUser_MC(User user){
-        return managerService.changeUserPassword(user)>0?"test":"updateUser";
+        return managerService.changeUserPassword(user)>0?"redirect:showAllUser_method":"updateUser";
     }
 
     //查询单条借阅记录
@@ -205,7 +205,7 @@ public class ManagerController {
     //修改借阅记录
     @RequestMapping("/updateHistory_method")
     public String updateHistory_MC(History history){
-        return managerService.updateHistory_MS(history)>0?"test":"updateHistory";
+        return managerService.updateHistory_MS(history)>0?"redirect:showAllHistory_method":"updateHistory";
     }
 
     //页面通用跳转方法

@@ -23,7 +23,7 @@
         <a href="${pageContext.request.contextPath}/manager/foundBooks">高级检索</a>
     </div>
     <div  style="text-align: center"    >
-
+        <a class="btn btn-primary" href="${pageContext.request.contextPath}/manager/addBook">添加</a>
     <%--要展示数据  使用表格--%>
     <table class="table table-striped table-bordered table-condensed" style="width: 70%;margin: auto;">
     <c:forEach var="b" varStatus="vs" items="#{blist}">
@@ -42,7 +42,7 @@
         </tr>
         <tr>
             <td colspan="3" rowspan="2"></td>
-            <td>修改按钮</td>
+            <td><a class="btn btn-danger btn-xs" href="showBookByBookId_method?bookId=${b.bookId}">修改</a></td>
         </tr>
         <tr>
             <td rowspan="1"><a class="btn btn-danger btn-xs" href="deleteBook_method?bookId=${b.bookId}">删除</a></td>
