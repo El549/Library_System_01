@@ -9,30 +9,26 @@
     </select>
     <!--根据条件查询多条图书记录-->
     <select id="selectHistorysByConditions" resultType="History">
-        SELECT * FROM history WHERE (historyId LIKE CONCAT('%',#{historyId},'%') OR CONCAT('%',#{historyId},'%')='')
-                                AND (bookId LIKE CONCAT('%',#{bookId},'%') OR CONCAT('%',#{bookId},'%')='')
-                                AND (UserId LIKE CONCAT('%',#{UserId},'%') OR CONCAT('%',#{UserId},'%')='')
-                                AND (borrowedTime LIKE CONCAT('%',#{borrowedTime},'%') OR CONCAT('%',#{borrowedTime},'%')='')
-                                AND (returnedTime LIKE CONCAT('%',#{returnedTime},'%') OR CONCAT('%',#{returnedTime},'%')='')
+        SELECT * FROM history WHERE (history_id LIKE CONCAT('%',#{historyId},'%') OR CONCAT('%',#{historyId},'%')='')
+                                AND (book_id LIKE CONCAT('%',#{bookId},'%') OR CONCAT('%',#{bookId},'%')='')
+                                AND (user_id LIKE CONCAT('%',#{userId},'%') OR CONCAT('%',#{userId},'%')='')
+                                AND (borrowed_time LIKE CONCAT('%',#{borrowedTime},'%') OR CONCAT('%',#{borrowedTime},'%')='')
+                                AND (returned_time LIKE CONCAT('%',#{returnedTime},'%') OR CONCAT('%',#{returnedTime},'%')='')
     </select>
-    <!--根据条件查询单挑图书记录-->
-    <select id="selectHistoryByConditions" resultType="History">
-        SELECT * FROM history WHERE (historyId LIKE CONCAT('%',#{historyId},'%') OR CONCAT('%',#{historyId},'%')='')
-                                AND (bookId LIKE CONCAT('%',#{bookId},'%') OR CONCAT('%',#{bookId},'%')='')
-                                AND (UserId LIKE CONCAT('%',#{UserId},'%') OR CONCAT('%',#{UserId},'%')='')
-                                AND (borrowedTime LIKE CONCAT('%',#{borrowedTime},'%') OR CONCAT('%',#{borrowedTime},'%')='')
-                                AND (returnedTime LIKE CONCAT('%',#{returnedTime},'%') OR CONCAT('%',#{returnedTime},'%')='')
+    <!--根据id查询单条图书记录-->
+    <select id="selectHistoryByHistoryId" resultType="History">
+        SELECT * FROM history WHERE (history_id = #{historyId})
     </select>
     <!--增加借书记录-->
     <insert id="addHistory">
-        INSERT INTO history(bookId,UserId,borrowedTime,returnedTime) VALUES (#{bookId},#{UserId},#{borrowedTime},#{returnedTime})
+        INSERT INTO history(book_id,uer_id,borrowed_time,returned_time) VALUES (#{bookId},#{userId},#{borrowedTime},#{returnedTime})
     </insert>
     <!--修改借书记录-->
     <update id="updateHistory">
-        UPDATE history SET bookId=#{bookId},UserId=#{UserId},borrowedTime=#{borrowedTime},returnedTime=#{returnedTime}
+        UPDATE history SET book_id=#{bookId},user_id=#{userId},borrowed_time=#{borrowedTime},returned_time=#{returnedTime} WHERE history_id = #{historyId}
     </update>
     <!--删除借书记录-->
     <delete id="deleteHistory">
-        DELETE FROM history WHERE historyId=#{historyId}
+        DELETE FROM history WHERE history_id=#{historyId}
     </delete>
 </mapper>

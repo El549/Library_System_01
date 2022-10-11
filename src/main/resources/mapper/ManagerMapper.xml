@@ -6,23 +6,31 @@
 
     <!--可选条件查询方法-->
     <select id="selectManagerByConditions" resultType="Manager">
-        select * from manager where (managerId like CONCAT('%',#{managerId},'%') or CONCAT('%',#{managerId},'%')='')
-                                and (managerPassword like CONCAT('%',#{managerPassword},'%') or CONCAT('%',#{managerPassword},'%')='')
+        select * from manager where (manager_id like CONCAT('%',#{managerId},'%') or CONCAT('%',#{managerId},'%')='')
+                                and (manager_password like CONCAT('%',#{managerPassword},'%') or CONCAT('%',#{managerPassword},'%')='')
     </select>
-
+    <!--管理员登录验证-->
+    <select id="managerLoginCheck" resultType="Manager">
+        select * from manager where (manager_id = #{managerId})
+                                and (manager_password = #{managerPassword})
+    </select>
+    <!--根据id查询一个管理员-->
+    <select id="selectManagerByManagerId" resultType="Manager">
+        select * from manager where (manager_id = #{managerId})
+    </select>
     <!--增加方法-->
     <insert id="addManager">
-        insert into manager (managerName,managerPassword) values (#{managerName},#{managerPassword})
+        insert into manager (manager_name,manager_password) values (#{managerName},#{managerPassword})
     </insert>
 
     <!--修改方法-->
     <update id="updateManager">
-        update manager set managerName=#{managerName},managerPassword=#{managerPassword} where managerId=#{managerId}
+        update manager set manager_name=#{managerName},manager_password=#{managerPassword} where manager_id=#{managerId}
     </update>
 
     <!--删除-->
     <delete id="deleteManager">
-        delete from manager where managerId=#{managerId}
+        delete from manager where manager_id=#{managerId}
     </delete>
 
 </mapper>
