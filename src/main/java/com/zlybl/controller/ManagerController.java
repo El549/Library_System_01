@@ -1,5 +1,6 @@
 package com.zlybl.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.zlybl.pojo.Book;
 import com.zlybl.pojo.History;
 import com.zlybl.pojo.Manager;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -60,7 +62,7 @@ public class ManagerController {
     }
     
     //查询所有书籍
-    @RequestMapping("/showAllBook_method")
+    /*@RequestMapping("/showAllBook_method")
     public ModelAndView showAllBook_MC(){
         //创建ModelAndView对象
         ModelAndView mv = new ModelAndView();
@@ -72,6 +74,16 @@ public class ManagerController {
         mv.addObject("blist",bookList);
         //跳转全查页面
         mv.setViewName("managerJsp/manageBook");
+        return mv;
+    }*/
+
+    //分页查询所有书籍
+    @RequestMapping("/showAllBook_method")
+    public ModelAndView showAllBook_MC(@RequestParam(defaultValue = "1") Integer pageNum,@RequestParam(defaultValue = "5") Integer pageSize){
+        ModelAndView mv = new ModelAndView();
+        PageInfo<Book> pi = managerService.showAllBook_MS(pageNum,pageSize);
+        mv.addObject("pi",pi);
+        mv.setViewName("/managerJsp/manageBook");
         return mv;
     }
     
@@ -111,7 +123,7 @@ public class ManagerController {
     }
     
     //查询所有用户
-    @RequestMapping("/showAllUser_method")
+    /*@RequestMapping("/showAllUser_method")
     public ModelAndView showAllUser_MC(){
         //创建ModelAndView对象
         ModelAndView mv = new ModelAndView();
@@ -121,6 +133,16 @@ public class ManagerController {
         //把查询出来的userlist存入到modelandview对象中 方便前端取值
         mv.addObject("ulist",userList);
         //跳转全查页面
+        mv.setViewName("managerJsp/manageUser");
+        return mv;
+    }*/
+
+    //分页查询所有用户
+    @RequestMapping("/showAllUser_method")
+    public ModelAndView showAllUser_MC(@RequestParam(defaultValue = "1") Integer pageNum,@RequestParam(defaultValue = "5") Integer pageSize){
+        ModelAndView mv = new ModelAndView();
+        PageInfo<User> pi = managerService.showAllUser(pageNum,pageSize);
+        mv.addObject("pi",pi);
         mv.setViewName("managerJsp/manageUser");
         return mv;
     }
@@ -133,7 +155,7 @@ public class ManagerController {
     }
 
     //查询所有借阅记录
-    @RequestMapping("/showAllHistory_method")
+    /*@RequestMapping("/showAllHistory_method")
     public ModelAndView showAllHistory_MC(){
         //创建ModelAndView对象
         ModelAndView mv = new ModelAndView();
@@ -143,6 +165,16 @@ public class ManagerController {
         //把查询出来的historyList存入到modelandview对象中,方便前端取值
         mv.addObject("hlist",historyList);
         //跳转全查页面
+        mv.setViewName("managerJsp/manageHistory");
+        return mv;
+    }*/
+
+    //分页查询所有借阅记录
+    @RequestMapping("/showAllHistory_method")
+    public ModelAndView showAllHistory_MC(@RequestParam(defaultValue = "1") Integer pageNum,@RequestParam(defaultValue = "10") Integer pageSize){
+        ModelAndView mv = new ModelAndView();
+        PageInfo<History> pi = managerService.showAllHistory_MS(pageNum,pageSize);
+        mv.addObject("pi",pi);
         mv.setViewName("managerJsp/manageHistory");
         return mv;
     }

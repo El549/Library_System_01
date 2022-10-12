@@ -18,7 +18,7 @@
     <a class="btn btn-primary" href="${pageContext.request.contextPath}/manager/addUser">添加</a>
     <%--要展示数据  使用表格--%>
     <table class="table table-striped table-bordered table-condensed" style="width: 70%;margin: auto;">
-        <c:forEach var="u" items="#{ulist}">
+        <c:forEach var="u" items="#{pi.list}">
             <tr>
                 <td rowspan="2"><img src="https://bbs.mihoyo.com/mainPage/ys-logo-v2.png"></td>
                 <td>${u.userName}</td>
@@ -33,6 +33,16 @@
         </c:forEach>
 
     </table>
+    <%--分页--%>
+    <c:if test="${!pi.isFirstPage}">
+        <a href="${pageContext.request.contextPath}/manager/showAllUser_method">首页</a>
+        <a href="${pageContext.request.contextPath}/manager/showAllUser_method?pageNum=${pi.prePage}">上一页</a>
+    </c:if>
+    <c:if test="${!pi.isLastPage}">
+        <a href="${pageContext.request.contextPath}/manager/showAllUser_method?pageNum=${pi.nextPage}">下一页</a>
+        <a href="${pageContext.request.contextPath}/manager/showAllUser_method?pageNum=${pi.lastPage}">末页</a>
+    </c:if>
+    当前页：${pi.pageNum}/${pi.pages}
 </div>
 
 </body>
