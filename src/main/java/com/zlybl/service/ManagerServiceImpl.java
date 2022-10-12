@@ -1,5 +1,7 @@
 package com.zlybl.service;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.zlybl.mapper.BookMapper;
 import com.zlybl.mapper.HistoryMapper;
 
@@ -51,9 +53,17 @@ public class ManagerServiceImpl implements ManagerServiceInf{
     }
 
     //显示所有书籍
-    @Override
+    /*@Override
     public List<Book> showAllBook_MS() {
         return bookMapper.selectAllBook();
+    }*/
+
+    //分页显示所有书籍
+    @Override
+    public PageInfo<Book> showAllBook_MS(Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum,pageSize);
+        List<Book> list = bookMapper.selectAllBook();
+        return new PageInfo<>(list);
     }
 
     //按条件查询多本书籍
@@ -88,9 +98,17 @@ public class ManagerServiceImpl implements ManagerServiceInf{
     }
 
     //显示所有用户
-    @Override
+    /*@Override
     public List<User> showAllUser() {
         return userMapper.selectAllUser();
+    }*/
+
+    //分页显示所有用户
+    @Override
+    public PageInfo<User> showAllUser(Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum,pageSize);
+        List<User> list = userMapper.selectAllUser();
+        return new PageInfo<>(list);
     }
 
     //根据ID显示单个用户
@@ -113,20 +131,23 @@ public class ManagerServiceImpl implements ManagerServiceInf{
 
     //删除用户
     @Override
-    public int addUser(User user) {
-        return 0;
-    }
-
-    //显示所有借阅记录
-    @Override
     public int deleteUser(int userId) {
         return userMapper.deleteUser(userId);
     }
 
+    //分页显示所有借阅记录
     @Override
+    public PageInfo<History> showAllHistory_MS(Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum,pageSize);
+        List<History> list = historyMapper.selectAllHistory();
+        return new PageInfo<>(list);
+    }
+
+    //显示所有借阅记录
+    /*@Override
     public List<History> showAllHistory_MS() {
         return historyMapper.selectAllHistory();
-    }
+    }*/
 
     //根据条件显示多条借阅记录
     @Override

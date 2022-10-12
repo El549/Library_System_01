@@ -28,7 +28,7 @@
             <td>操作</td>
         </tr>
         <%--var是循环体内的变量  items是谁被循环 varstatus是专门做编号的--%>
-        <c:forEach var="h" items="${hlist}" varStatus="vs">
+        <c:forEach var="h" items="${pi.list}" varStatus="vs">
             <tr>
                 <td>${h.historyId}</td>
                 <td>${h.bookId}</td>
@@ -41,9 +41,17 @@
                 </td>
             </tr>
         </c:forEach>
-
-
     </table>
+        <%--分页--%>
+        <c:if test="${!pi.isFirstPage}">
+            <a href="${pageContext.request.contextPath}/manager/showAllHistory_method">首页</a>
+            <a href="${pageContext.request.contextPath}/manager/showAllHistory_method?pageNum=${pi.prePage}">上一页</a>
+        </c:if>
+        <c:if test="${!pi.isLastPage}">
+            <a href="${pageContext.request.contextPath}/manager/showAllHistory_method?pageNum=${pi.nextPage}">下一页</a>
+            <a href="${pageContext.request.contextPath}/manager/showAllHistory_method?pageNum=${pi.lastPage}">末页</a>
+        </c:if>
+        当前页：${pi.pageNum}/${pi.pages}
 </div>
 
 </body>

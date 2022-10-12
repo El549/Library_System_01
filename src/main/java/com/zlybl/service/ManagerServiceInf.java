@@ -1,5 +1,6 @@
 package com.zlybl.service;
 
+import com.github.pagehelper.PageInfo;
 import com.zlybl.pojo.Book;
 import com.zlybl.pojo.History;
 import com.zlybl.pojo.Manager;
@@ -17,7 +18,10 @@ public interface ManagerServiceInf {
     int changeManagerInfo(Manager manager);
 
     //显示所有书籍
-    List<Book> showAllBook_MS();
+    /*List<Book> showAllBook_MS();*/
+
+    //分页显示所有书籍
+    PageInfo<Book> showAllBook_MS(Integer pageNum,Integer pageSize);
 
     //按条件查询多本书籍
     List<Book> showBookByConditions_MS(Book book);
@@ -35,7 +39,10 @@ public interface ManagerServiceInf {
     int deleteBook_MS(int bookId);
 
     //显示所有用户
-    List<User> showAllUser();
+    /*List<User> showAllUser();*/
+
+    //分页显示所有用户
+    PageInfo<User> showAllUser(Integer pageNum,Integer pageSize);
 
     //根据ID显示单个用户
     User showUserByUserId(int userId);
@@ -45,14 +52,15 @@ public interface ManagerServiceInf {
 
     //修改用户密码
     int changeUserPassword(User user);
-    //增加用户
-    int addUser(User user);
 
     //删除用户
     int deleteUser(int userId);
 
     //显示所有借阅记录
-    List<History> showAllHistory_MS();
+    /*List<History> showAllHistory_MS();*/
+
+    //分页显示所有借阅记录
+    PageInfo<History> showAllHistory_MS(Integer pageNum,Integer pageSize);
 
     //根据条件显示多条借阅记录
     List<History> showHistoryByConditions_MS(History history);
