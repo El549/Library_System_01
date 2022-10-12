@@ -3,36 +3,33 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zlybl.mapper.UserMapper">
-<!--    查询所有用户-->
+    <!--查询所有用户-->
     <select id="selectAllUser" resultType="User">
         select * from user
     </select>
 
-    <!--根据多个条件:用户名或密码查询一组用户-->
-    <select id="selectUsersByConditions" resultType="User">
-        SELECT * FROM user WHERE (userID like CONCAT('%',#{userID},'%') OR CONCAT('%',#{userID},'%')='')
-                             AND (userName like CONCAT('%',#{userName},'%') OR CONCAT('%',#{userName},'%')='')
-                             AND (userPassword like CONCAT('%',#{userPassword},'%') OR CONCAT('%',#{userPassword},'%')='')
+    <!--根据id查询单个用户-->
+    <select id="selectUserByUserId" resultType="User">
+        SELECT * FROM user WHERE user_id=#{userId}
     </select>
 
-    <!--根据多个条件：用户名或密码查询单个用户-->
-    <select id="selectUserByConditions" resultType="User">
-        SELECT * FROM user WHERE (userID like CONCAT('%',#{userID},'%') OR CONCAT('%',#{userID},'%')='')
-                             AND (userName like CONCAT('%',#{userName},'%') OR CONCAT('%',#{userName},'%')='')
-                             AND (userPassword like CONCAT('%',#{userPassword},'%') OR CONCAT('%',#{userPassword},'%')='')
+    <!--用户登录-->
+    <select id="userLoginCheck" resultType="User">
+        select * from user where user_id=#{userId} and user_password=#{userPassword}
     </select>
+
     <!--添加用户-->
     <insert id="addUser">
-        insert into user (userName,userPassword) values (#{userName},#{userPassword})
+        insert into user (user_name,user_password) values (#{userName},#{userPassword})
     </insert>
 
     <!--修改用户信息,仅在用户界面可以修改。所以直接传参用户对象-->
     <update id="updateUser">
-        update user set userName=#{userName},userPassword=#{userPassword} where userId=#{userId}
+        update user set user_name=#{userName},user_password=#{userPassword} where user_id=#{userId}
     </update>
 
     <!--根据id删除用户-->
     <delete id="deleteUser">
-        delete from book where userId=#{userId}
+        delete from user where user_id=#{userId}
     </delete>
 </mapper>
