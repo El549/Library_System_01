@@ -1,6 +1,7 @@
 package com.zlybl.mapper;
 
 import com.zlybl.pojo.Book;
+import com.zlybl.pojo.User;
 
 import java.util.List;
 
@@ -11,8 +12,8 @@ public interface BookMapper {
     //可选择条件查询
     List<Book> selectBooksByConditions(Book book);
 
-    //单条件查询
-    Book selectBookByConditions(Book book);
+    //根据书籍id查找书籍
+    Book selectBookByBookId(int bookId);
 
     //增加书籍
     int addBook(Book book);
@@ -22,4 +23,8 @@ public interface BookMapper {
 
     //删除数据
     int deleteBook(int bookId);
+
+    //查询用户未还的书
+    List<Book> selectBorrowedBook(int userId);
+
 }
