@@ -9,8 +9,8 @@
     </select>
     <!--根据条件查询多条图书记录-->
     <select id="selectHistorysByConditions" resultType="History">
-        SELECT * FROM history WHERE (book_id LIKE CONCAT('%',#{bookId},'%') OR CONCAT('%',#{bookId},'%')=0 OR #{bookId}='')
-                                AND (user_id LIKE CONCAT('%',#{userId},'%') OR CONCAT('%',#{userId},'%')=0 OR #{userId}='')
+        SELECT * FROM history WHERE (book_id LIKE CONCAT('%',#{bookId},'%') OR #{bookId}=0 OR #{bookId}='')
+                                AND (user_id LIKE CONCAT('%',#{userId},'%') OR #{userId}=0 OR #{userId}='')
                                 AND (borrowed_time LIKE CONCAT('%',#{borrowedTime},'%') OR #{borrowedTime} is null)
                                 AND (returned_time LIKE CONCAT('%',#{returnedTime},'%') OR #{returnedTime} is null)
     </select>
