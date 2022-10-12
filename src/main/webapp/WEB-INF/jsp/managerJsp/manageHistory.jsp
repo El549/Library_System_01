@@ -16,7 +16,8 @@
 <body>
 
 <div style="">
-
+    <a href="${pageContext.request.contextPath}/manager/managerInfo">管理员主页</a>
+    <a href="${pageContext.request.contextPath}/index.jsp">借阅系统首页</a>
     <%--要展示数据  使用表格--%>
     <table class="table table-striped table-bordered table-condensed" style="width: 70%;margin: auto; text-align: center">
         <tr class="info">

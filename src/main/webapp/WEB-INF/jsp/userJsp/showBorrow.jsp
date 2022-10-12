@@ -31,13 +31,10 @@
             <td>${book.press}</td>
             <td>${book.bookClass}</td>
             <td>${book.bookStatus}</td>
-                <%-- <td><fmt:formatDate value="${b.saletime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>--%>
-<%--            <td>--%>
-<%--                <a href="${pageContext.request.contextPath}/user/returnBook?historyId=${h.historyId}&userId=${userId}">还书</a>--%>
-<%--            </td>--%>
         </tr>
     </c:forEach>
 </table>
-<a class="btn btn-danger btn-xs" href="${pageContext.request.contextPath}/user/userQuery">回到用户首页</a>
+    <a href="${pageContext.request.contextPath}/user/userQuery">用户主页</a>
+    <a href="${pageContext.request.contextPath}/index.jsp">借阅系统首页</a>
 </body>
 </html>

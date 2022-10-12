@@ -14,7 +14,8 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/bootstrap3.3.7/css/bootstrap.css">
 </head>
 <body>
-
+    <a href="${pageContext.request.contextPath}/manager/managerInfo">管理员主页</a>
+    <a href="${pageContext.request.contextPath}/index.jsp">借阅系统首页</a>
     <div id="searchBox" style="width: 100%; text-align: center">
         <form target="_self" method="post" action="${pageContext.request.contextPath}/manager/showBooks">
             <input type="text" placeholder="请输入图书名称" name="bookName"/>

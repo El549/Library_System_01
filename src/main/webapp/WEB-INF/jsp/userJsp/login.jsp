@@ -24,5 +24,6 @@
             </td>
         </tr>
     </table>
+    <a href="${pageContext.request.contextPath}/index.jsp">借阅系统首页</a>
 </body>
 </html>

@@ -18,7 +18,6 @@
             <a class="btn btn-warning btn-xs" href="${pageContext.request.contextPath}/user/userInfo">个人信息</a>
             <%--假退出--%>
             <a class="btn btn-danger btn-xs" href="${pageContext.request.contextPath}/user/login">退出登录</a>
-
         </td>
     </tr>
 </table>
@@ -37,5 +36,6 @@
         <td><a href="${pageContext.request.contextPath}/user/showHistorysByUserId?userId=${user.userId}">借书历史</a></td>
     </tr>
 </table>
+    <a href="${pageContext.request.contextPath}/index.jsp">借阅系统首页</a>
 </body>
 </html>

@@ -44,6 +44,7 @@
     </c:if>
     当前页：${pi.pageNum}/${pi.pages}
 </div>
-
+    <a href="${pageContext.request.contextPath}/manager/managerInfo">管理员主页</a>
+    <a href="${pageContext.request.contextPath}/index.jsp">借阅系统首页</a>
 </body>
 </html>

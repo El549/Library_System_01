@@ -13,6 +13,8 @@
     <title>借书历史页面</title>
 </head>
 <body>
+    <a href="${pageContext.request.contextPath}/user/userQuery">用户主页</a>
+    <a href="${pageContext.request.contextPath}/index.jsp">借阅系统首页</a>
 <table>
     <tr class="info">
         <td>编号</td>

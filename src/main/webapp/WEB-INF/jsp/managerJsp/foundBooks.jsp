@@ -19,5 +19,7 @@
         书籍状态:<input name="bookStatus">
         <input type="submit" value="搜索">
       </form>
+      <a href="${pageContext.request.contextPath}/manager/managerInfo">管理员主页</a>
+      <a href="${pageContext.request.contextPath}/index.jsp">借阅系统首页</a>
 </body>
 </html>

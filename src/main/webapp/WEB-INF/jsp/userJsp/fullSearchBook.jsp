@@ -13,6 +13,8 @@
     <title>全查页面</title>
 </head>
 <body>
+    <a href="${pageContext.request.contextPath}/user/userQuery">用户主页</a>
+    <a href="${pageContext.request.contextPath}/index.jsp">借阅系统首页</a>
 <form action="${pageContext.request.contextPath}/user/foundBook?userId=${user.userId}&book" method="post">
     书名:<input name="bookName">
     作者:<input name="author">
