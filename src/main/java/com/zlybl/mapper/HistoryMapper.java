@@ -6,20 +6,20 @@ import java.util.List;
 
 public interface HistoryMapper {
     //全查借书记录
-    public List<History> selectAllHistory();
+    List<History> selectAllHistory();
 
     //根据条件查询多条图书记录
-    public List<History> selectHistorysByConditions(History history);
+    List<History> selectHistorysByConditions(History history);
 
-    //根据条件查询单条图书记录
-    public History selectHistoryByConditions(History history);
+    //根据id查询单条图书记录
+    public History selectHistoryByHistoryId(int historyId);
 
     //增加借书记录
-    public int addHistory(History history);
+    int addHistory(History history);
 
     //修改借书记录
-    public int updateHistory(History history);
+    int updateHistory(History history);
 
     //删除借书记录
-    public int deleteHistory(int historyId);
+    int deleteHistory(int historyId);
 }

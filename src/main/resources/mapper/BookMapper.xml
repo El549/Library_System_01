@@ -9,35 +9,28 @@
     </select>
     <!--可选择条件查询-->
     <select id="selectBooksByConditions" resultType="Book">
-        SELECT * FROM book WHERE (bookId like CONCAT('%',#{bookId},'%') OR CONCAT('%',#{bookId},'%')='')
-                             AND (bookName like CONCAT('%',#{bookName},'%') OR CONCAT('%',#{bookName},'%')='')
-                             AND (author like CONCAT('%',#{author},'%') OR CONCAT('%',#{author},'%')='')
-                             AND (bookCover like CONCAT('%',#{bookCover},'%') OR CONCAT('%',#{bookCover},'%')='')
-                             AND (bookStatus like CONCAT('%',#{bookStatus},'%') OR CONCAT('%',#{bookStatus},'%')='')
-                             AND (press like CONCAT('%',#{press},'%') OR CONCAT('%',#{press},'%')='')
-                             AND (bookClass like CONCAT('%',#{bookClass},'%') OR CONCAT('%',#{bookClass},'%')='');
+        SELECT * FROM book WHERE (book_name like CONCAT('%',#{bookName},'%') OR #{bookName}='' OR #{bookName} is null)
+                             AND (author like CONCAT('%',#{author},'%') OR #{author}='' OR #{author} is null)
+                             AND (book_cover like CONCAT('%',#{bookCover},'%') OR #{bookCover} is null)
+                             AND (book_status like CONCAT('%',#{bookStatus},'%') OR #{bookStatus} is null)
+                             AND (press like CONCAT('%',#{press},'%') OR #{press}='' OR #{press} is null)
+                             AND (book_class like CONCAT('%',#{bookClass},'%') OR #{bookClass}='' OR #{bookClass} is null)
     </select>
-    <!--选择查询-->
-    <select id="selectBookByConditions" resultType="Book">
-        SELECT * FROM book WHERE (bookId like CONCAT('%',#{bookId},'%') OR CONCAT('%',#{bookId},'%')='')
-                             AND (bookName like CONCAT('%',#{bookName},'%') OR CONCAT('%',#{bookName},'%')='')
-                             AND (author like CONCAT('%',#{author},'%') OR CONCAT('%',#{author},'%')='')
-                             AND (bookCover like CONCAT('%',#{bookCover},'%') OR CONCAT('%',#{bookCover},'%')='')
-                             AND (bookStatus like CONCAT('%',#{bookStatus},'%') OR CONCAT('%',#{bookStatus},'%')='')
-                             AND (press like CONCAT('%',#{press},'%') OR CONCAT('%',#{press},'%')='')
-                             AND (bookClass like CONCAT('%',#{bookClass},'%') OR CONCAT('%',#{bookClass},'%')='');
+    <!--通过id查找书籍-->
+    <select id="selectBookByBookId" resultType="Book">
+        select * from book where book_id=#{bookId}
     </select>
     <!--增加书籍-->
     <insert id="addBook">
-        insert into book(bookCover,bookName,author,press,bookClass) values (#{bookCover},#{bookName},#{author},#{press},#{bookClass})
+        insert into book(book_cover,book_name,author,press,book_class) values (#{bookCover},#{bookName},#{author},#{press},#{bookClass})
     </insert>
     <!--修改数据-->
     <update id="updateBook">
-        update book set bookCover=#{bookCover},bookName=#{bookName},author=#{author},press=#{press},bookClass=#{bookClass},bookStatus=#{bookStatus}
-        where bookId=#{bookId}
+        update book set book_cover=#{bookCover},book_name=#{bookName},author=#{author},press=#{press},book_class=#{bookClass},book_status=#{bookStatus}
+        where book_id=#{bookId}
     </update>
     <!--删除数据-->
     <delete id="deleteBook">
-        delete from book where bookId=#{bookId}
+        delete from book where book_id=#{bookId}
     </delete>
 </mapper>
