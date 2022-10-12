@@ -17,5 +17,7 @@
         密码:<input name="userPassword" value="${user.userPassword}">
         <input type="submit" value="修改">
     </form>
+    <a href="${pageContext.request.contextPath}/manager/managerInfo">管理员主页</a>
+    <a href="${pageContext.request.contextPath}/index.jsp">借阅系统首页</a>
 </body>
 </html>

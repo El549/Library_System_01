@@ -18,8 +18,6 @@
         密码：<input name="managerPassword">
         <input type="submit" value="登录">
     </form>
-
-</table>
-
+    <a href="${pageContext.request.contextPath}/index.jsp">借阅系统首页</a>
 </body>
 </html>
