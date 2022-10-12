@@ -12,7 +12,7 @@ public interface HistoryMapper {
     List<History> selectHistorysByConditions(History history);
 
     //根据id查询单条图书记录
-    public History selectHistoryByHistoryId(int historyId);
+    History selectHistoryByHistoryId(int historyId);
 
     //增加借书记录
     int addHistory(History history);
