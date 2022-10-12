@@ -3,7 +3,7 @@ package com.zlybl.pojo;
 import java.util.Date;
 
 public class History {
-    private int history_id;
+    private int historyId;
     private int bookId;
     private int userId;
     private Date borrowedTime;
@@ -12,20 +12,20 @@ public class History {
     public History() {
     }
 
-    public History(int history_id, int bookId, int userId, Date borrowedTime, Date returnedTime) {
-        this.history_id = history_id;
+    public History(int historyId, int bookId, int userId, Date borrowedTime, Date returnedTime) {
+        this.historyId = historyId;
         this.bookId = bookId;
         this.userId = userId;
         this.borrowedTime = borrowedTime;
         this.returnedTime = returnedTime;
     }
 
-    public int getHistory_id() {
-        return history_id;
+    public int getHistoryId() {
+        return historyId;
     }
 
-    public void setHistory_id(int history_id) {
-        this.history_id = history_id;
+    public void setHistoryId(int historyId) {
+        this.historyId = historyId;
     }
 
     public int getBookId() {
@@ -63,7 +63,7 @@ public class History {
     @Override
     public String toString() {
         return "History{" +
-                "history_id=" + history_id +
+                "historyId=" + historyId +
                 ", bookId=" + bookId +
                 ", userId=" + userId +
                 ", borrowedTime=" + borrowedTime +
