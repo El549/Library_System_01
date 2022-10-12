@@ -58,6 +58,14 @@ public class UserController {
         return mv;
     }
 
+    //用户退出登录
+    @RequestMapping("/userLogout")
+    public String userLogout(HttpSession session){
+        //让session失效
+        session.invalidate();
+        return "userJsp/login";
+    }
+
     //查询一个用于回显
     @RequestMapping("/showUser")
     public ModelAndView showUser(int userId){
