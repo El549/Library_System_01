@@ -9,12 +9,12 @@
     </select>
     <!--可选择条件查询-->
     <select id="selectBooksByConditions" resultType="Book">
-        SELECT * FROM book WHERE (book_name like CONCAT('%',#{bookName},'%') OR CONCAT('%',#{bookName},'%')='' or #{bookName} is null)
-                             AND (author like CONCAT('%',#{author},'%') OR CONCAT('%',#{author},'%')='' or #{author} is null)
+        SELECT * FROM book WHERE (book_name like CONCAT('%',#{bookName},'%') OR #{bookName}='' OR #{bookName} is null)
+                             AND (author like CONCAT('%',#{author},'%') OR #{author}='' OR #{author} is null)
                              AND (book_cover like CONCAT('%',#{bookCover},'%') OR #{bookCover} is null)
                              AND (book_status like CONCAT('%',#{bookStatus},'%') OR #{bookStatus} is null)
-                             AND (press like CONCAT('%',#{press},'%') OR CONCAT('%',#{press},'%')='' or #{press} is null)
-                             AND (book_class like CONCAT('%',#{bookClass},'%') OR CONCAT('%',#{bookClass},'%')='' or #{bookClass} is null)
+                             AND (press like CONCAT('%',#{press},'%') OR #{press}='' OR #{press} is null)
+                             AND (book_class like CONCAT('%',#{bookClass},'%') OR #{bookClass}='' OR #{bookClass} is null)
     </select>
     <!--通过id查找书籍-->
     <select id="selectBookByBookId" resultType="Book">
