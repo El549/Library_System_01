@@ -17,14 +17,12 @@
         密码：<input name="userPassword">
         <input type="submit" value="登录">
     </form>
-
     <table>
         <tr class="info">
             <td>
-                <a class="btn btn-danger btn-xs" href="userRegister">注册新用户</a>
+                <a class="btn btn-danger btn-xs" href="${pageContext.request.contextPath}/user/userRegister">注册新用户</a>
             </td>
         </tr>
-
     </table>
 </body>
 </html>

@@ -17,11 +17,5 @@
         新密码：<input name="userPassword" value="${user.userPassword}">
         <input type="submit" value="修改">
     </form>
-
-<%--<form action="updateBook?id=${user.userId}" method="post">--%>
-<%--    用户名：<input name="bname" value="${user.userName}">--%>
-<%--    新密码：<input name="author"  value="${user.userPassword}">--%>
-<%--    <input type="submit" value="修改">--%>
-<%--</form>--%>
 </body>
 </html>

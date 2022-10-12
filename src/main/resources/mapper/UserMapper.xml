@@ -12,13 +12,20 @@
     <select id="selectUserByUserId" resultType="User">
         SELECT * FROM user WHERE user_id=#{userId}
     </select>
+
     <!--用户登录-->
     <select id="userLoginCheck" resultType="User">
         select * from user where user_id=#{userId} and user_password=#{userPassword}
     </select>
+
+    <!--查询最后一个用户的id-->
+    <select id="selectLastUserId" resultType="int">
+        select user_id from `user` order by user_id desc limit 1
+    </select>
+
     <!--添加用户-->
     <insert id="addUser">
-        insert into user (user_name,user_password) values (#{userName},#{userPassword})
+        insert into user (user_id,user_name,user_password) values (#{userId},#{userName},#{userPassword})
     </insert>
 
     <!--修改用户信息,仅在用户界面可以修改。所以直接传参用户对象-->

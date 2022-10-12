@@ -10,7 +10,7 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt" %>
 <html>
 <head>
-    <title>还书页面</title>
+    <title>借书历史页面</title>
 </head>
 <body>
 <table>
@@ -36,8 +36,6 @@
         </tr>
     </c:forEach>
 </table>
-<a href="bookList?userId=${userId}">返回</a>
-
-
+<a class="btn btn-danger btn-xs" href="${pageContext.request.contextPath}/user/userQuery">回到用户首页</a>
 </body>
 </html>

@@ -1,6 +1,7 @@
 package com.zlybl.mapper;
 
 import com.zlybl.pojo.Book;
+import com.zlybl.pojo.User;
 
 import java.util.List;
 
@@ -22,4 +23,8 @@ public interface BookMapper {
 
     //删除数据
     int deleteBook(int bookId);
+
+    //查询用户未还的书
+    List<Book> selectBorrowedBook(int userId);
+
 }

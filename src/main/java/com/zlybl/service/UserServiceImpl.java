@@ -19,17 +19,56 @@ public class UserServiceImpl implements UserServiceInf{
     @Autowired
     private HistoryMapper historyMapper;
     @Autowired
-    private UserMapper userMapper;
+    private UserMapper usermapper;
+
+
+
+    @Override
+    public int userRegisterService(User user) {
+        int id=usermapper.selectLastUserId();
+        id++;
+        user.setUserId(id);
+        int flag=usermapper.addUser(user);
+        if(flag>0){
+
+            return id;
+        }else {
+            return flag;
+        }
+    }
+
+    @Override
+    public User userLogin(User user) {
+        return usermapper.userLoginCheck(user);
+    }
+
+    @Override
+    public User selectUserByUserId(int userId) {
+        return usermapper.selectUserByUserId(userId);
+    }
+
+    @Override
+    public int changeUserPassword(User user) {
+        return usermapper.updateUser(user);
+    }
+
+    @Override
+    public int deleteUser_US(int userId) {
+        return usermapper.deleteUser(userId);
+    }
+
     //查询所有书籍
     @Override
     public List<Book> showAllBook_US() {
         return bookMapper.selectAllBook();
     }
+
     //可选择条件查询书籍
     @Override
     public List<Book> showBooksByConditions_US(Book book) {
         return bookMapper.selectBooksByConditions(book);
     }
+
     //查询历史
     @Override
     public List<History> showHistoryByConditions_US(History history) {
@@ -57,6 +96,7 @@ public class UserServiceImpl implements UserServiceInf{
         history.setBorrowedTime(date1);
         return historyMapper.addHistory(history);
     }
+
     //还书
     @Override
     public int returnBook(History history) {
@@ -77,9 +117,11 @@ public class UserServiceImpl implements UserServiceInf{
     public History selectHistoryByHistoryId(int historyId) {
         return historyMapper.selectHistoryByHistoryId(historyId);
     }
-    //根据id查用户
+
+    //根据用户id查询未归还的书
     @Override
-    public User selectUserByUserId(int userId) {
-        return userMapper.selectUserByUserId(userId);
+    public List<Book> selectBorrowedBook_US(int userId) {
+        return bookMapper.selectBorrowedBook(userId);
     }
+
 }

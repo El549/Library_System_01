@@ -21,7 +21,6 @@
     书籍状态:<input name="bookStatus">
     <input type="submit" value="搜索书籍">
 </form>
-
 <table>
     <tr class="info">
         <td>编号</td>
@@ -48,8 +47,6 @@
         </tr>
     </c:forEach>
 </table>
-
-<a href="showHistorysByUserId?userId=${user.userId}">查看我的借书记录</a>
-
+<a class="btn btn-danger btn-xs" href="${pageContext.request.contextPath}/user/userQuery">回到用户首页</a>
 </body>
 </html>
