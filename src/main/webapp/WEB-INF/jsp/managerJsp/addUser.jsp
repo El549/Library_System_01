@@ -12,7 +12,7 @@
 </head>
 <body>
     添加页面
-    <form action="addUser_method" method="post">
+    <form action="${pageContext.request.contextPath}/manager/addUser_method" method="post">
         用户名:<input name="userName">
         密码:<input name="userPassword">
         <input type="submit" value="提交">

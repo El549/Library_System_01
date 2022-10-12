@@ -13,7 +13,7 @@
 </head>
 <body>
     修改页面
-    <form action="updateHistory_method?historyId=${history.historyId}" method="post">
+    <form action="${pageContext.request.contextPath}/manager/updateHistory_method?historyId=${history.historyId}" method="post">
         Book_ID:<input name="bookId" value="${history.bookId}">
         User_ID:<input name="UserId" value="${history.userId}">
         借出时间:<input name="borrowedTime" value='<fmt:formatDate value="${history.borrowedTime}" pattern="yyyy-MM-dd HH:mm:ss"/>'>
