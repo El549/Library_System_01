@@ -6,6 +6,8 @@ public interface ManagerMapper {
 
     //可选条件查询
     Manager selectManagerByConditions(Manager manager);
+    //根据多个或单个条件查询单个用户（准确值，用于登录验证）
+    Manager managerLoginCheck(Manager manager);
 
     //根据多个或单个条件查询单个用户（准确值，用于登录验证）
     Manager managerLoginCheck(Manager manager);

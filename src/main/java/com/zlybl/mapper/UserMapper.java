@@ -12,8 +12,11 @@ public interface UserMapper {
     //登录
     User userLoginCheck(User user);
 
-    //根据Id查询单个用户
+    //根据id查询单个用户
     User selectUserByUserId(int userId);
+
+    //查询最后一条user的id
+    int selectLastUserId();
 
     //添加用户
     int addUser(User user);
@@ -23,4 +26,5 @@ public interface UserMapper {
 
     //删除用户
     int deleteUser(int userId);
+    
 }
