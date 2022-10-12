@@ -12,7 +12,7 @@
 </head>
 <body>
     添加页面
-    <form action="addBook_method" method="post">
+    <form action="${pageContext.request.contextPath}/manager/addBook_method" method="post">
         封面url:<input name="bookCover">
         书名:<input name="bookName">
         作者:<input name="author">

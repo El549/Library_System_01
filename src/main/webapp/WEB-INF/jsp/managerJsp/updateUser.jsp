@@ -12,7 +12,7 @@
 </head>
 <body>
     修改页面
-    <form action="updateUser_method?userId=${user.userId}" method="post">
+    <form action="${pageContext.request.contextPath}/manager/updateUser_method?userId=${user.userId}" method="post">
         用户名:<input name="userName" value="${user.userName}">
         密码:<input name="userPassword" value="${user.userPassword}">
         <input type="submit" value="修改">

@@ -4,7 +4,6 @@ import com.zlybl.pojo.Book;
 import com.zlybl.pojo.History;
 import com.zlybl.pojo.Manager;
 import com.zlybl.pojo.User;
-import com.zlybl.service.ManagerServiceImpl;
 import com.zlybl.service.ManagerServiceInf;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,11 +33,11 @@ public class ManagerController {
             session.setAttribute("manager",m);
             //登录成功 跳转到管理员全查页面
             System.out.println("success");
-            mv.setViewName("managerInfo");
+            mv.setViewName("managerJsp/managerInfo");
         }else {
             //登录失败
             System.out.println("defeat");
-            mv.setViewName("managerLogin");    //重新登录
+            mv.setViewName("managerJsp/managerLogin");    //重新登录
         }
         return mv;
     }
@@ -50,14 +49,14 @@ public class ManagerController {
         Manager manager = managerService.selectManagerByManagerId_MS(managerId);
         //把查询出来的manager存入Model对象中  这样我们前端页面可以取值
         model.addAttribute("manager",manager);
-        return "managerInfo";
+        return "managerJsp/managerInfo";
     }
     
     //修改管理员信息
     @RequestMapping("changeManagerInfo_method")
     public String changeManagerInfo(Manager manager){
         System.out.println(manager);
-        return managerService.changeManagerInfo(manager)>0?"redirect:mLogin":"error";
+        return managerService.changeManagerInfo(manager)>0?"redirect:mLogin":"managerJsp/error";
     }
     
     //查询所有书籍
@@ -72,7 +71,7 @@ public class ManagerController {
         //查询过后得到的数据 应该传递到前端  把查询出来的booklist存入到modelandview对象中 方便前端取值
         mv.addObject("blist",bookList);
         //跳转全查页面
-        mv.setViewName("manageBook");
+        mv.setViewName("managerJsp/manageBook");
         return mv;
     }
     
@@ -86,7 +85,7 @@ public class ManagerController {
         System.out.println(bookList);
         //把查询出来的booklist存入到modelandview对象中 方便前端取值
         mv.addObject("blist",bookList);
-        mv.setViewName("manageBook");
+        mv.setViewName("managerJsp/manageBook");
         return mv;
     }
     
@@ -100,7 +99,7 @@ public class ManagerController {
         System.out.println(bookList);
         //把查询出来的booklist存入到modelandview对象中 方便前端取值
         mv.addObject("blist",bookList);
-        mv.setViewName("manageBook");
+        mv.setViewName("managerJsp/manageBook");
         return mv;
     }
     
@@ -108,7 +107,7 @@ public class ManagerController {
     @RequestMapping("/deleteBook_method")
     public String deleteBook_MC(int bookId){
         System.out.println(bookId);
-        return managerService.deleteBook_MS(bookId)>0?"redirect:showAllBook_method":"error";
+        return managerService.deleteBook_MS(bookId)>0?"redirect:showAllBook_method":"managerJsp/error";
     }
     
     //查询所有用户
@@ -122,7 +121,7 @@ public class ManagerController {
         //把查询出来的userlist存入到modelandview对象中 方便前端取值
         mv.addObject("ulist",userList);
         //跳转全查页面
-        mv.setViewName("manageUser");
+        mv.setViewName("managerJsp/manageUser");
         return mv;
     }
 
@@ -130,7 +129,7 @@ public class ManagerController {
     @RequestMapping("/deleteUser_method")
     public String deleteUser_MC(int userId){
         System.out.println(userId);
-        return managerService.deleteUser(userId)>0?"redirect:showAllUser_method":"error";
+        return managerService.deleteUser(userId)>0?"redirect:showAllUser_method":"managerJsp/error";
     }
 
     //查询所有借阅记录
@@ -144,7 +143,7 @@ public class ManagerController {
         //把查询出来的historyList存入到modelandview对象中,方便前端取值
         mv.addObject("hlist",historyList);
         //跳转全查页面
-        mv.setViewName("manageHistory");
+        mv.setViewName("managerJsp/manageHistory");
         return mv;
     }
     
@@ -152,13 +151,13 @@ public class ManagerController {
     @RequestMapping("/deleteHistory_method")
     public String deleteHistory_MC(int historyId){
         System.out.println(historyId);
-        return managerService.deleteHistory_MS(historyId)>0?"redirect:showAllHistory_method":"error";
+        return managerService.deleteHistory_MS(historyId)>0?"redirect:showAllHistory_method":"managerJsp/error";
     }
 
     //添加书籍
     @RequestMapping("/addBook_method")
     public String addBook_MC(Book book){
-        return managerService.addBook_MS(book)>0?"redirect:showAllBook_method":"addBook";
+        return managerService.addBook_MS(book)>0?"redirect:showAllBook_method": "managerJsp/addBook";
     }
 
     //查询单本书籍
@@ -166,18 +165,18 @@ public class ManagerController {
     public String showBookByBookId_MC(int bookId, Model model){
         Book book = managerService.showBookByBookId_MS(bookId);
         model.addAttribute("book",book);
-        return "updateBook";
+        return "managerJsp/updateBook";
     }
     //修改书籍
     @RequestMapping("/updateBook_method")
     public String updateBook_MC(Book book){
-        return managerService.updateBook_MS(book)>0?"redirect:showAllBook_method":"updateBook";
+        return managerService.updateBook_MS(book)>0?"redirect:showAllBook_method": "managerJsp/error";
     }
 
     //添加用户
     @RequestMapping("/addUser_method")
     public String addUser_MC(User user){
-        return managerService.addUser_MS(user)>0?"redirect:showAllUser_method":"addUser";
+        return managerService.addUser_MS(user)>0?"redirect:showAllUser_method": "managerJsp/error";
     }
 
     //查询单个用户
@@ -185,13 +184,13 @@ public class ManagerController {
     public String showUserByUserId(int userId,Model model){
         User user = managerService.showUserByUserId(userId);
         model.addAttribute("user",user);
-        return "updateUser";
+        return "managerJsp/updateUser";
     }
     
     //修改用户
     @RequestMapping("/updateUser_method")
     public String updateUser_MC(User user){
-        return managerService.changeUserPassword(user)>0?"redirect:showAllUser_method":"updateUser";
+        return managerService.changeUserPassword(user)>0?"redirect:showAllUser_method": "managerJsp/error";
     }
 
     //查询单条借阅记录
@@ -199,18 +198,19 @@ public class ManagerController {
     public String showHistoryByHistoryId_MC(int historyId,Model model){
         History history = managerService.showHistoryByHistoryId_MS(historyId);
         model.addAttribute("history",history);
-        return "updateHistory";
+        return "managerJsp/updateHistory";
     }
     
     //修改借阅记录
     @RequestMapping("/updateHistory_method")
     public String updateHistory_MC(History history){
-        return managerService.updateHistory_MS(history)>0?"redirect:showAllHistory_method":"updateHistory";
+        return managerService.updateHistory_MS(history)>0?"redirect:showAllHistory_method": "managerJsp/error";
     }
 
     //页面通用跳转方法
     @RequestMapping("{page}")
     public String toPage(@PathVariable() String page){
+        page = "managerJsp/"+page;
         return page;
     }
 }

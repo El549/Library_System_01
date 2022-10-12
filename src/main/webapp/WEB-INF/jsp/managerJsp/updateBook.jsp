@@ -12,7 +12,7 @@
 </head>
 <body>
     修改页面
-    <form action="updateBook_method?bookId=${book.bookId}" method="post">
+    <form action="${pageContext.request.contextPath}/manager/updateBook_method?bookId=${book.bookId}" method="post">
         封面url:<input name="bookCover" value="${book.bookCover}">
         书名:<input name="bookName" value="${book.bookName}">
         作者:<input name="author" value="${book.author}">
