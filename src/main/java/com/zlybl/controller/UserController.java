@@ -27,7 +27,7 @@ public class UserController {
         User user=userServiceInf.selectUserByUserId(userId);
         mv.addObject("user",user);
         mv.addObject("booklist",booklist);
-        mv.setViewName("full_search_page");
+        mv.setViewName("fullSearchBook");
         return mv;
     }
     // List<Book> selectBooksByConditions(Book book);
@@ -37,7 +37,7 @@ public class UserController {
         List<Book> booklist=userServiceInf.showBooksByConditions_US(book);
         mv.addObject("user",userServiceInf.selectUserByUserId(userId));
         mv.addObject("booklist",booklist);
-        mv.setViewName("found_book");
+        mv.setViewName("foundBook");
         return mv;
     }
 
@@ -46,7 +46,7 @@ public class UserController {
         ModelAndView mv=new ModelAndView();
         int flag=userServiceInf.borrowBook(bookId,userId);
         if(flag==0){
-            mv.setViewName("fail");
+            mv.setViewName("error");
         }else{
             mv.addObject("userId",userId);
             mv.setViewName("redirect:bookList");
@@ -73,7 +73,7 @@ public class UserController {
         int flag=userServiceInf.returnBook(history);
         System.out.println(flag);
         if(flag==0){
-            mv.setViewName("fail");
+            mv.setViewName("error");
         }else {
             mv.addObject("userId",userId);
             mv.setViewName("redirect:showHistorysByUserId");
