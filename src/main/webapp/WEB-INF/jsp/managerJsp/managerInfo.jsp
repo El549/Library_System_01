@@ -105,7 +105,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>--%>
-                <a class="navbar-brand" href="${pageContext.request.contextPath}/manager/managerInfo">图书借阅系统</a>
+                <a class="navbar-brand" href="${pageContext.request.contextPath}/manager/managerInfo">管理员首页</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">

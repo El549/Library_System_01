@@ -76,12 +76,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>--%>
-            <a class="navbar-brand" href="${pageContext.request.contextPath}/user/userQuery">图书借阅系统</a>
+            <a class="navbar-brand" href="${pageContext.request.contextPath}/user/userQuery">用户首页</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#">用户ID：${sessionScope.user.userId} 用户名：${sessionScope.user.userName}</a></li>
-                <li><a href="showUser?userId=${sessionScope.user.userId}">修改密码</a></li>
+                <li><a href="#" data-toggle="modal" data-target="#myModal" >修改密码</a></li>
                 <li><a href="deleteUser?userId=${sessionScope.user.userId}">用户注销</a></li>
                 <%--<li><a href="#">Settings</a></li>
                 <li><a href="#">Profile</a></li>--%>
@@ -154,6 +154,40 @@
             </div>
         </div>
     </div>
+</div>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal"tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    修改用户信息
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form action="changeUserPasswordSucces?userId=${sessionScope.user.userId}" method="post" id="changeUserInfo">
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">用户名</label>
+                        <input type="text" class="form-control" id="recipient-name" name="userName" value="${sessionScope.user.userName}">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-password" class="col-form-label">用户密码</label>
+                        <input type="password" class="form-control" id="recipient-password" name="userPassword" value="${sessionScope.user.userPassword}">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                </button>
+                <button type="submit" class="btn btn-primary" form="changeUserInfo">
+                    提交更改
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
 </div>
 <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
 <script src="https://cdn.jsdelivr.cn/npm/jquery@1.12.4/dist/jquery.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>

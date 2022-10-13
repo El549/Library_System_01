@@ -84,12 +84,13 @@ public class UserController {
     //修改密码
     @RequestMapping("changeUserPasswordSucces")
     public String updateUser(User user){
-        return userServiceInf.changeUserPassword(user)>0?"redirect:userInfo" : "userJsp/error";
+        return userServiceInf.changeUserPassword(user)>0?"redirect:userQuery" : "userJsp/error";
     }
 
     //注销用户
     @RequestMapping("/deleteUser")
-    public String deleteUser(int userId){
+    public String deleteUser(int userId,HttpSession session){
+        session.invalidate();
         return userServiceInf.deleteUser_US(userId)>0?"redirect:login" : "userJsp/error";
     }
 
