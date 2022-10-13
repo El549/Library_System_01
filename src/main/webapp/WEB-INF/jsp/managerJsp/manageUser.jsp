@@ -101,12 +101,16 @@
 
         <div class="table-responsive">
             <div class="table-responsive container-fluid">
-
+                <div class="row">
+                    <div class="col-md-1 col-md-offset-0">
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#myModal2">添加用户</button>
+                    </div>
+                </div>
                     <table class="table table-striped">
                         <thead>
                         <tr>
                             <th>用户头像</th>
-                            <th>编号</th>
+                            <th>序号</th>
                             <th>用户ID</th>
                             <th>用户名</th>
                             <th>密码</th>
@@ -191,6 +195,40 @@
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭
                 </button>
                 <button type="submit" class="btn btn-primary" form="changeUserInfo">
+                    提交更改
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+<!-- 增加用户模态框（Modal） -->
+<div class="modal fade" id="myModal2"tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel2">
+                    添加用户
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form action="addUser_method" method="post" id="addUser">
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">用户名</label>
+                        <input type="text" class="form-control" id="recipient-name2" name="userName" value="">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-password" class="col-form-label">密码</label>
+                        <input type="password" class="form-control" id="recipient-password2" name="userPassword" value="">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                </button>
+                <button type="submit" class="btn btn-primary" form="addUser">
                     提交更改
                 </button>
             </div>

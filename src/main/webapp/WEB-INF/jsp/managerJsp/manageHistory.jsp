@@ -118,7 +118,7 @@
                     <thead>
                     <tr>
                         <th>序号</th>
-                        <th>记录ID</th>
+                        <th>借阅记录ID</th>
                         <th>图书ID</th>
                         <th>借阅者ID</th>
                         <th>借阅时间</th>
@@ -137,7 +137,7 @@
                             <td><fmt:formatDate value="${h.borrowedTime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                             <td><fmt:formatDate value="${h.returnedTime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                             <td>
-                                <a class="btn btn-warning btn-xs" href="showAllHistory_method?historyId=${h.historyId}">修改</a>
+                                <a class="btn btn-warning btn-xs" href="showHistoryByHistoryId_method?historyId=${h.historyId}"">修改</a>
                                 <a class="btn btn-danger btn-xs" href="deleteHistory_method?historyId=${h.historyId}">删除</a>
                             </td>
                             <%--<td>
