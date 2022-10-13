@@ -1,29 +1,42 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: crossover0411
-  Date: 2022-10-07
-  Time: 22:30
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<head>
-    <title>login</title>
-</head>
+<title>用户登录ing~</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/static/mycss/login.css">
 <body>
-    登录
-    <form action="${pageContext.request.contextPath}/user/userLogin" method="post">
-        用户Id：<input name="userId">
-        密码：<input name="userPassword">
-        <input type="submit" value="登录">
-    </form>
-    <table>
-        <tr class="info">
-            <td>
-                <a class="btn btn-danger btn-xs" href="${pageContext.request.contextPath}/user/userRegister">注册新用户</a>
-            </td>
-        </tr>
-    </table>
-    <a href="${pageContext.request.contextPath}/index.jsp">借阅系统首页</a>
+<div id="box">
+    <div id="mask">
+        <div class="login-box">
+
+            <h4>用户登录</h4>
+            <div class="">
+                <form action="${pageContext.request.contextPath}/manager/mLogin" method="post" class="input-box">
+                    <div class="input-text">
+                        <span class="login-login"><img src="${pageContext.request.contextPath}/static/img/用户黑1.svg"
+                                                       style="width: 25px;height: 25px;"></span>
+                        <input type="text" placeholder="用户名" name="managerId">
+                    </div>
+                    <div class="input-text">
+                        <span class="login-passwd"><img src="${pageContext.request.contextPath}/static/img/密码.svg"
+                                                        style="width: 25px;height: 25px;"></span>
+                        <input type="password" placeholder="密码" name="managerPassword">
+                    </div>
+                    <input type="submit" value="登录" class="button">
+                    <div class="signup">
+                        还没有账户？<a href="#">注册</a>
+                    </div>
+                </form>
+            </div>
+            <div id="changeBox">
+                <div id="button-changeManagerType">
+                    <a href="${pageContext.request.contextPath}/manager/managerLogin">管理员登录</a>
+                </div>
+                <div id="button-changeUserType">
+                    <a href="#">用户登录</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
 </body>
 </html>

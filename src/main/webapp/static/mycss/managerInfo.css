@@ -1,0 +1,107 @@
+*{
+    padding:0;
+    margin: 0;
+}
+
+body{
+    width: 100%;
+    height: 100%;
+    background-image:url("../img/book1.png");
+    background-repeat: no-repeat;
+    /*background-position: center;*/
+    background-size: cover;
+    overflow: hidden;
+}
+
+.topMenu{
+    width: 100%;
+    height: 50px;
+    background-color: #3c3c3c;
+    text-align: center;
+    overflow: hidden;
+}
+
+.topMenu table{
+    margin: auto;
+    text-align: center;
+    width: 80%;
+}
+.topMenu tr{
+
+    color: rgb(220,220,220);
+    line-height: 40px;
+}
+.topMenu td{
+
+}
+
+.topMenu a{
+    text-decoration: none;
+    color: rgb(220,220,220);
+}
+
+.topMenu a:hover{
+    color: white;
+    text-decoration: underline;
+}
+
+.topMenu img{
+    float: left;
+    margin-top: 10px;
+    margin-left: 30%;
+    width: 20px;
+}
+
+.topMenu #mySidebar{
+    display: block;
+    line-height: 40px;
+    padding-left: 5px;
+    width: 100%;
+    color: RoyalBlue;
+    text-decoration: none;
+}
+
+.topMenu #mySidebar a{
+    color: black;
+}
+
+.box0{
+    margin: auto;
+    padding-top: 20px;
+    width: 80%;
+    height: 100%;
+    text-align: center;
+}
+
+
+
+.box1Right{
+    margin: auto;
+    width: 78%;
+    height: 80%;
+    text-align: center;
+}
+
+.box0 .box1Right table{
+    margin: auto;
+    width: 100%;
+    overflow: hidden;
+    -webkit-border-horizontal-spacing: 25px;
+    -webkit-border-vertical-spacing: 35px;
+    text-align: center;
+}
+.box0 .box1Right table tr td{
+    top: 0;
+    background-color: white;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.box1Right .introduceInfo .functionName{
+    width: 100%;
+    background-color: rgb(220,220,220);
+    padding: 10px;
+}
+.box1Right .introduceInfo li{
+    width: 100%;
+    padding: 5px 20px 5px 20px;
+}
