@@ -1,5 +1,7 @@
 package com.zlybl.service;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.zlybl.mapper.BookMapper;
 import com.zlybl.mapper.HistoryMapper;
 import com.zlybl.mapper.UserMapper;
@@ -58,15 +60,30 @@ public class UserServiceImpl implements UserServiceInf{
     }
 
     //查询所有书籍
-    @Override
+    /*@Override
     public List<Book> showAllBook_US() {
         return bookMapper.selectAllBook();
+    }*/
+
+    //分页显示所有书籍
+     public PageInfo<Book> showAllBook_US(Integer pageNum, Integer pageSize){
+         PageHelper.startPage(pageNum,pageSize);
+         List<Book> list = bookMapper.selectAllBook();
+         return new PageInfo<>(list);
     }
 
     //可选择条件查询书籍
-    @Override
+    /*@Override
     public List<Book> showBooksByConditions_US(Book book) {
         return bookMapper.selectBooksByConditions(book);
+    }*/
+
+    //分页显示可选条件查询书籍
+    @Override
+    public PageInfo<Book> showBooksByConditions_US(Book book, Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum,pageSize);
+        List<Book> list = bookMapper.selectBooksByConditions(book);
+        return new PageInfo<>(list);
     }
 
     //查询历史

@@ -54,12 +54,12 @@
     <!-- 自定义拦截器 -->
 
     <!-- 拦截器 -->
-    <!--<mvc:interceptors>
+    <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
             <bean class="com.zlybl.util.LoginInterceptor"/>
         </mvc:interceptor>
-    </mvc:interceptors>-->
+    </mvc:interceptors>
     <!--文件上传-->
     <!--<bean id="multipartResolver"
           class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
