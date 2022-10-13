@@ -25,7 +25,7 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="${pageContext.request.contextPath}/user/userQuery">图书借阅系统</a>
+            <a class="navbar-brand" href="${pageContext.request.contextPath}/user/userQuery">用户首页</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">

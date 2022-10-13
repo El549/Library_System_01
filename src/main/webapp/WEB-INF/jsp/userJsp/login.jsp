@@ -79,6 +79,9 @@
         <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
     </form>
 
+    <div style="margin-top: 10px">
+        <a class="btn btn-lg btn-warning btn-block" href="${pageContext.request.contextPath}/user/userRegister">注册新用户</a>
+    </div>
 </div>
 <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
 <script src="https://cdn.jsdelivr.cn/npm/jquery@1.12.4/dist/jquery.min.js"

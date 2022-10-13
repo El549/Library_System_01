@@ -73,7 +73,7 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="${pageContext.request.contextPath}/manager/managerInfo">图书借阅系统</a>
+            <a class="navbar-brand" href="${pageContext.request.contextPath}/manager/managerInfo">管理员首页</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
@@ -148,6 +148,17 @@
                                 </ul>
                             </nav>
                         </c:if>
+                            <c:if test="${!pi.isLastPage && !pi.isFirstPage}">
+                                <nav aria-label="...">
+                                    <ul class="pager">
+                                        <li><a href="${pageContext.request.contextPath}/manager/showAllUser_method">首页</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/manager/showAllUser_method?pageNum=${pi.prePage}">上一页</a></li>
+                                        当前页：${pi.pageNum}/${pi.pages}
+                                        <li> <a href="${pageContext.request.contextPath}/manager/showAllUser_method?pageNum=${pi.nextPage}">下一页</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/manager/showAllUser_method?pageNum=${pi.lastPage}">末页</a></li>
+                                    </ul>
+                                </nav>
+                            </c:if>
                         <c:if test="${!pi.isLastPage && pi.isFirstPage}">
                             <nav aria-label="...">
                                 <ul class="pager">
