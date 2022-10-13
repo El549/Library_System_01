@@ -32,7 +32,10 @@ public interface UserServiceInf {
     PageInfo<Book> showAllBook_US(Integer pageNum, Integer pageSize);
 
     //可选择条件查询
-    List<Book> showBooksByConditions_US(Book book);
+    /*List<Book> showBooksByConditions_US(Book book);*/
+
+    //分页显示可选条件查询书籍
+    PageInfo<Book> showBooksByConditions_US(Book book,Integer pageNum, Integer pageSize);
 
     //展示该用户所有借书记录
     List<History> showHistoryByConditions_US(History history);

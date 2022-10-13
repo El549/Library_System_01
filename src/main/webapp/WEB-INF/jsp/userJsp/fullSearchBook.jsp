@@ -100,6 +100,7 @@
                     <thead>
                     <tr>
                         <th>编号</th>
+                        <th>书ID</th>
                         <th>封面</th>
                         <th>书名</th>
                         <th>作者</th>
@@ -113,16 +114,27 @@
                     <tbody>
                     <c:forEach var="b" items="${pi.list}" varStatus="vs">
                         <tr>
-                            <td>${vs.count}</td>
+                            <td>${vs.count+(pi.pageNum-1)*5}</td>
+                            <td>${b.bookId}</td>
                             <td><img src="${b.bookCover}" alt="${b.bookName}.png" height="100px"></td>
                             <td>${b.bookName}</td>
                             <td>${b.author}</td>
                             <td>${b.press}</td>
                             <td>${b.bookClass}</td>
                             <td>${b.bookStatus}</td>
-                            <td>
+                            <c:if test="${b.bookStatus == false}">
+                                <td>
+                                    <a class="btn btn-warning btn-xs disabled" href="borrowBook?bookId=${b.bookId}&userId=${user.userId}">借阅</a>
+                                </td>
+                            </c:if>
+                            <c:if test="${b.bookStatus == true}">
+                                <td>
+                                    <a class="btn btn-warning btn-xs" href="borrowBook?bookId=${b.bookId}&userId=${user.userId}">借阅</a>
+                                </td>
+                            </c:if>
+                            <%--<td>
                                 <a class="btn btn-warning btn-xs" href="borrowBook?bookId=${b.bookId}&userId=${user.userId}">借阅</a>
-                            </td>
+                            </td>--%>
                         </tr>
                     </c:forEach>
                     </tbody>

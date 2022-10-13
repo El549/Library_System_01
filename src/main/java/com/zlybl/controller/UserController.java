@@ -117,13 +117,23 @@ public class UserController {
     }
 
     // List<Book> selectBooksByConditions(Book book);
-    @RequestMapping("/foundBook")
+    /*@RequestMapping("/foundBook")
     public ModelAndView selectBooksByConditions(Book book,int userId){
         ModelAndView mv=new ModelAndView();
         List<Book> booklist=userServiceInf.showBooksByConditions_US(book);
         mv.addObject("user",userServiceInf.selectUserByUserId(userId));
         mv.addObject("booklist",booklist);
         mv.setViewName("userJsp/foundBook");
+        return mv;
+    }*/
+
+    @RequestMapping("/foundBook")
+    public ModelAndView selectBooksByConditions(Book book,int userId,@RequestParam(defaultValue = "1") Integer pageNum, @RequestParam(defaultValue = "5") Integer pageSize){
+        ModelAndView mv=new ModelAndView();
+        PageInfo<Book> pi = userServiceInf.showBooksByConditions_US(book,pageNum,pageSize);
+        mv.addObject("user",userServiceInf.selectUserByUserId(userId));
+        mv.addObject("pi",pi);
+        mv.setViewName("userJsp/fullSearchBook");
         return mv;
     }
 
