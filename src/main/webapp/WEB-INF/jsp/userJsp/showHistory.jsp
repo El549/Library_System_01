@@ -141,9 +141,17 @@
                             <td>${h.userId}</td>
                             <td><fmt:formatDate value="${h.borrowedTime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                             <td><fmt:formatDate value="${h.returnedTime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
-                            <td>
-                                <a href="${pageContext.request.contextPath}/user/returnBook?historyId=${h.historyId}&userId=${userId}">还书</a>
-                            </td>
+
+                            <c:if test="${h.returnedTime == null}">
+                                <td>
+                                    <a class="btn btn-warning btn-xs" href="${pageContext.request.contextPath}/user/returnBook?historyId=${h.historyId}&userId=${userId}">还书</a>
+                                </td>
+                            </c:if>
+                            <c:if test="${h.returnedTime != null}">
+                                <td>
+                                    <a class="disabled btn btn-default btn-xs" href="${pageContext.request.contextPath}/user/returnBook?historyId=${h.historyId}&userId=${userId}">已还</a>
+                                </td>
+                            </c:if>
                         </tr>
                     </c:forEach>
                     </tbody>

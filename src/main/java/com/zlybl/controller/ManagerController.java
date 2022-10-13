@@ -96,7 +96,7 @@ public class ManagerController {
     }
     
     //按条件查询多本书籍
-    @RequestMapping("/showBooks")
+    /*@RequestMapping("/showBooks")
     public ModelAndView showBookByConditions_MC(Book book){
         //创建ModelAndView对象
         System.out.println(book);
@@ -107,10 +107,10 @@ public class ManagerController {
         mv.addObject("blist",bookList);
         mv.setViewName("managerJsp/manageBook");
         return mv;
-    }
+    }*/
     
     //图书高级检索
-    @RequestMapping("/foundBook_method")
+    /*@RequestMapping("/foundBook_method")
     public ModelAndView foundBook(Book book){
         //创建ModelAndView对象
         System.out.println(book);
@@ -119,6 +119,16 @@ public class ManagerController {
         System.out.println(bookList);
         //把查询出来的booklist存入到modelandview对象中 方便前端取值
         mv.addObject("blist",bookList);
+        mv.setViewName("managerJsp/manageBook");
+        return mv;
+    }*/
+
+    //按条件分页查询书籍
+    @RequestMapping("/foundBook_method")
+    public ModelAndView foundBook(Book book,@RequestParam(defaultValue = "1") Integer pageNum, @RequestParam(defaultValue = "5") Integer pageSize){
+        ModelAndView mv=new ModelAndView();
+        PageInfo<Book> pi = managerService.showBooksByConditions_MS(book,pageNum,pageSize);
+        mv.addObject("pi",pi);
         mv.setViewName("managerJsp/manageBook");
         return mv;
     }

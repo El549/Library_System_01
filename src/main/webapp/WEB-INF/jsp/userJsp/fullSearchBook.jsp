@@ -66,14 +66,6 @@
         </div>
 
         <div class="table-responsive">
-            <%--<form class="navbar-form navbar-right" action="${pageContext.request.contextPath}/user/foundBook?userId=${user.userId}&book" method="post">
-                书名:<input name="bookName">
-                作者:<input name="author">
-                出版社:<input name="press">
-                书籍类别:<input name="bookClass">
-                书籍状态:<input name="bookStatus">
-                <input type="submit" value="搜索书籍">
-            </form>--%>
             <div class="container-fluid">
                 <form class="navbar-form navbar-left" role="search" action="${pageContext.request.contextPath}/user/foundBook?userId=${user.userId}&book" method="post">
                     <div class="form-group">
@@ -106,7 +98,7 @@
                         <th>作者</th>
                         <th>出版社</th>
                         <th>书籍类别</th>
-                        <th>书籍状态</th>
+                        <%--<th>书籍状态</th>--%>
                         <th>操作</th>
                     </tr>
                     </thead>
@@ -121,10 +113,10 @@
                             <td>${b.author}</td>
                             <td>${b.press}</td>
                             <td>${b.bookClass}</td>
-                            <td>${b.bookStatus}</td>
+                            <%--<td>${b.bookStatus}</td>--%>
                             <c:if test="${b.bookStatus == false}">
                                 <td>
-                                    <a class="btn btn-warning btn-xs disabled" href="borrowBook?bookId=${b.bookId}&userId=${user.userId}">借阅</a>
+                                    <a class="btn btn-default btn-xs disabled" href="borrowBook?bookId=${b.bookId}&userId=${user.userId}">被借</a>
                                 </td>
                             </c:if>
                             <c:if test="${b.bookStatus == true}">
@@ -142,7 +134,7 @@
                 <div>
                     <div>
                         <%--分页--%>
-                        <c:if test="${!pi.isFirstPage}">
+                        <c:if test="${!pi.isFirstPage && pi.isLastPage}">
                             <nav aria-label="...">
                                 <ul class="pager">
                                     <li><a href="${pageContext.request.contextPath}/user/bookList?userId=${user.userId}">首页</a></li>
@@ -153,7 +145,7 @@
                                 </ul>
                             </nav>
                         </c:if>
-                        <c:if test="${!pi.isLastPage}">
+                        <c:if test="${!pi.isLastPage && pi.isFirstPage}">
                             <nav aria-label="...">
                                 <ul class="pager">
                                     <li class="disabled"><a href="javascript:return false;">首页</a></li>
