@@ -1,6 +1,7 @@
 package com.zlybl.controller;
 
 
+import com.github.pagehelper.PageInfo;
 import com.zlybl.pojo.Book;
 import com.zlybl.pojo.History;
 import com.zlybl.pojo.User;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
@@ -92,7 +94,7 @@ public class UserController {
     }
 
     //全查页面
-    @RequestMapping("/bookList")
+    /*@RequestMapping("/bookList")
     public ModelAndView showAllBook(int userId){
         ModelAndView mv=new ModelAndView();
         List<Book> booklist=userServiceInf.showAllBook_US();
@@ -100,6 +102,17 @@ public class UserController {
         mv.addObject("user",user);
         mv.addObject("booklist",booklist);
         mv.setViewName("userJsp/fullSearchBook");
+        return mv;
+    }*/
+
+    @RequestMapping("/bookList")
+    public ModelAndView showAllBook(int userId,@RequestParam(defaultValue = "1") Integer pageNum, @RequestParam(defaultValue = "5") Integer pageSize){
+        ModelAndView mv = new ModelAndView();
+        PageInfo<Book> pi = userServiceInf.showAllBook_US(pageNum,pageSize);
+        User user=userServiceInf.selectUserByUserId(userId);
+        mv.addObject("user",user);
+        mv.addObject("pi",pi);
+        mv.setViewName("/userJsp/fullSearchBook");
         return mv;
     }
 

@@ -111,7 +111,7 @@
                     </thead>
                     <%--var是循环体内的变量 items是谁被循环 varStatus是专门做编号的--%>
                     <tbody>
-                    <c:forEach var="b" items="${booklist}" varStatus="vs">
+                    <c:forEach var="b" items="${pi.list}" varStatus="vs">
                         <tr>
                             <td>${vs.count}</td>
                             <td><img src="${b.bookCover}" alt="${b.bookName}.png" height="100px"></td>
@@ -127,6 +127,33 @@
                     </c:forEach>
                     </tbody>
                 </table>
+                <div>
+                    <div>
+                        <%--分页--%>
+                        <c:if test="${!pi.isFirstPage}">
+                            <nav aria-label="...">
+                                <ul class="pager">
+                                    <li><a href="${pageContext.request.contextPath}/user/bookList?userId=${user.userId}">首页</a></li>
+                                    <li><a href="${pageContext.request.contextPath}/user/bookList?pageNum=${pi.prePage}&userId=${user.userId}">上一页</a></li>
+                                    当前页：${pi.pageNum}/${pi.pages}
+                                    <li class="disabled"><a href="javascript:return false;">下一页</a></li>
+                                    <li class="disabled"><a href="javascript:return false;">末页</a></li>
+                                </ul>
+                            </nav>
+                        </c:if>
+                        <c:if test="${!pi.isLastPage}">
+                            <nav aria-label="...">
+                                <ul class="pager">
+                                    <li class="disabled"><a href="javascript:return false;">首页</a></li>
+                                    <li class="disabled"><a href="javascript:return false;">上一页</a></li>
+                                    当前页：${pi.pageNum}/${pi.pages}
+                                    <li><a href="${pageContext.request.contextPath}/user/bookList?pageNum=${pi.nextPage}&userId=${user.userId}">下一页</a></li>
+                                    <li><a href="${pageContext.request.contextPath}/user/bookList?pageNum=${pi.lastPage}&userId=${user.userId}">末页</a></li>
+                                </ul>
+                            </nav>
+                        </c:if>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

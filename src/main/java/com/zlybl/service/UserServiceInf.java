@@ -1,5 +1,6 @@
 package com.zlybl.service;
 
+import com.github.pagehelper.PageInfo;
 import com.zlybl.pojo.Book;
 import com.zlybl.pojo.History;
 import com.zlybl.pojo.User;
@@ -24,9 +25,11 @@ public interface UserServiceInf {
     //注销用户
     int deleteUser_US(int userId);
 
-
     //查询所有书籍
-    List<Book> showAllBook_US();
+    /*List<Book> showAllBook_US();*/
+
+    //分页显示所有书籍
+    PageInfo<Book> showAllBook_US(Integer pageNum, Integer pageSize);
 
     //可选择条件查询
     List<Book> showBooksByConditions_US(Book book);
