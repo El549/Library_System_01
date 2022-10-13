@@ -105,6 +105,7 @@ public class UserController {
         return mv;
     }*/
 
+    //分页全查页面
     @RequestMapping("/bookList")
     public ModelAndView showAllBook(int userId,@RequestParam(defaultValue = "1") Integer pageNum, @RequestParam(defaultValue = "5") Integer pageSize){
         ModelAndView mv = new ModelAndView();
@@ -127,6 +128,7 @@ public class UserController {
         return mv;
     }*/
 
+    //按条件分页查询书籍
     @RequestMapping("/foundBook")
     public ModelAndView selectBooksByConditions(Book book,int userId,@RequestParam(defaultValue = "1") Integer pageNum, @RequestParam(defaultValue = "5") Integer pageSize){
         ModelAndView mv=new ModelAndView();

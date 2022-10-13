@@ -24,7 +24,10 @@ public interface ManagerServiceInf {
     PageInfo<Book> showAllBook_MS(Integer pageNum,Integer pageSize);
 
     //按条件查询多本书籍
-    List<Book> showBookByConditions_MS(Book book);
+    /*List<Book> showBookByConditions_MS(Book book);*/
+
+    //根据条件分页显示所有书籍
+    PageInfo<Book> showBooksByConditions_MS(Book book, Integer pageNum, Integer pageSize);
 
     //按书的ID查询单本书籍
     Book showBookByBookId_MS(int bookId);

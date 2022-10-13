@@ -67,9 +67,17 @@ public class ManagerServiceImpl implements ManagerServiceInf{
     }
 
     //按条件查询多本书籍
-    @Override
+    /*@Override
     public List<Book> showBookByConditions_MS(Book book) {
         return bookMapper.selectBooksByConditions(book);
+    }*/
+
+    //分页显示可选条件查询书籍
+    @Override
+    public PageInfo<Book> showBooksByConditions_MS(Book book, Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum,pageSize);
+        List<Book> list = bookMapper.selectBooksByConditions(book);
+        return new PageInfo<>(list);
     }
 
     //按书的ID查询单本书籍
