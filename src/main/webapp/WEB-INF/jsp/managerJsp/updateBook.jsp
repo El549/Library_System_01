@@ -138,7 +138,7 @@
                 </h4>
             </div>
             <div class="modal-body">
-                <form action="changeUserPasswordSucces?userId=${sessionScope.manager.managerId}" method="post" id="changeUserInfo">
+                <form action="changeManagerInfo_method?managerId=${sessionScope.manager.managerId}" method="post" id="changeUserInfo">
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">管理员名称</label>
                         <input type="text" class="form-control" id="recipient-name" name="managerName" value="${sessionScope.manager.managerName}">
