@@ -79,13 +79,9 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#">用户ID：${sessionScope.user.userId} 用户名：${sessionScope.user.userName}</a></li>
                     <li>
-                        <%--                    <a href="showUser?userId=${sessionScope.user.userId}" >修改密码</a>--%>
                         <a href="#" data-toggle="modal" data-target="#myModal" >修改密码</a>
-
                     </li>
                     <li><a href="deleteUser?userId=${sessionScope.user.userId}">用户注销</a></li>
-                    <%--<li><a href="#">Settings</a></li>
-                    <li><a href="#">Profile</a></li>--%>
                     <li><a href="${pageContext.request.contextPath}/user/userLogout">退出登录</a></li>
                 </ul>
             </div>

@@ -25,6 +25,7 @@
     <script src="https://cdn.jsdelivr.cn/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
     <script src="https://cdn.jsdelivr.cn/npm/respond.js@1.4.2/dest/respond.min.js"></script>
     <![endif]-->
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
 </head>
 <body style="padding-top: 70px">
 <nav class="navbar navbar-inverse navbar-fixed-top">
