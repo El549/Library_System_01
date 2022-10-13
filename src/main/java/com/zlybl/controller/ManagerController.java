@@ -64,8 +64,8 @@ public class ManagerController {
     
     //修改管理员信息
     @RequestMapping("changeManagerInfo_method")
-    public String changeManagerInfo(Manager manager){
-        System.out.println(manager);
+    public String changeManagerInfo(Manager manager,HttpSession session){
+        session.invalidate();
         return managerService.changeManagerInfo(manager)>0?"redirect:mLogin":"managerJsp/error";
     }
     
