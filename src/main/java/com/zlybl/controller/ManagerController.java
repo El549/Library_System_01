@@ -43,6 +43,14 @@ public class ManagerController {
         }
         return mv;
     }
+
+    //管理员退出登录
+    @RequestMapping("/mLogout")
+    public String managerLogout_MC(HttpSession session){
+        //让session失效
+        session.invalidate();
+        return "managerJsp/managerLogin";
+    }
     
     //获得管理员信息
     @RequestMapping("showManagerInfo_method")
