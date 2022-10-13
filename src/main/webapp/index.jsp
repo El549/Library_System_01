@@ -13,5 +13,7 @@
 <a href="${pageContext.request.contextPath}/user/userQuery">用户主页</a>
 <br/>
 <a href="${pageContext.request.contextPath}/manager/managerInfo">管理员主页</a>
+
+<a href="test.jsp">test</a>
 </body>
 </html>

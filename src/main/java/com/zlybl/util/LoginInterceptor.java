@@ -17,6 +17,10 @@ public class LoginInterceptor implements HandlerInterceptor {
         if(uri.contains("ogin")){
             return true;
         }
+        //判断是否为注册界面
+        if(uri.contains("Register")){
+            return true;
+        }
         //判断用户是否为登录状态
         User user = (User) request.getSession().getAttribute("user");
         Manager manager = (Manager) request.getSession().getAttribute("manager");

@@ -1,54 +1,139 @@
 <%--
   Created by IntelliJ IDEA.
-  User: 24868
-  Date: 2022/10/8
-  Time: 12:24
+  User: lhy
+  Date: 2022/10/13
+  Time: 09:54
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt" %>
-<html>
+<!doctype html>
+<html lang="zh-CN">
 <head>
-    <title>全查页面</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>Bootstrap 101 Template</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+    <!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
+    <!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.jsdelivr.cn/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+    <script src="https://cdn.jsdelivr.cn/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+    <![endif]-->
 </head>
-<body>
-    <a href="${pageContext.request.contextPath}/user/userQuery">用户主页</a>
-    <a href="${pageContext.request.contextPath}/index.jsp">借阅系统首页</a>
-<form action="${pageContext.request.contextPath}/user/foundBook?userId=${user.userId}&book" method="post">
-    书名:<input name="bookName">
-    作者:<input name="author">
-    出版社:<input name="press">
-    书籍类别:<input name="bookClass">
-    书籍状态:<input name="bookStatus">
-    <input type="submit" value="搜索书籍">
-</form>
-<table>
-    <tr class="info">
-        <td>编号</td>
-        <td>书名</td>
-        <td>作者</td>
-        <td>出版社</td>
-        <td>书籍类别</td>
-        <td>书籍状态</td>
-        <td>操作</td>
-    </tr>
-    <%--var是循环体内的变量 items是谁被循环 varStatus是专门做编号的--%>
-    <c:forEach var="book" items="${booklist}" varStatus="vs">
-        <tr>
-            <td>${vs.count}</td>
-            <td>${book.bookName}</td>
-            <td>${book.author}</td>
-            <td>${book.press}</td>
-            <td>${book.bookClass}</td>
-            <td>${book.bookStatus}</td>
-           <%-- <td><fmt:formatDate value="${b.saletime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>--%>
-            <td>
-                <a href="borrowBook?bookId=${book.bookId}&userId=${user.userId}">借书</a>
-            </td>
-        </tr>
-    </c:forEach>
-</table>
-<a class="btn btn-danger btn-xs" href="${pageContext.request.contextPath}/user/userQuery">回到用户首页</a>
+<body style="padding-top: 70px">
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <%--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>--%>
+            <a class="navbar-brand" href="${pageContext.request.contextPath}/user/userQuery">图书借阅系统</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">用户ID：${sessionScope.user.userId} 用户名：${sessionScope.user.userName}</a></li>
+                <li><a href="showUser?userId=${sessionScope.user.userId}">修改密码</a></li>
+                <li><a href="deleteUser?userId=${sessionScope.user.userId}">用户注销</a></li>
+                <%--<li><a href="#">Settings</a></li>
+                <li><a href="#">Profile</a></li>--%>
+                <li><a href="${pageContext.request.contextPath}/user/userLogout">退出登录</a></li>
+            </ul>
+            <%--搜索框--%>
+            <%--<form class="navbar-form navbar-right">
+                <input type="text" class="form-control" placeholder="Search...">
+            </form>--%>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li class="disabled"><a href="javascript:return false;">图书查询</a></li>
+                <li><a href="${pageContext.request.contextPath}/user/showBorrowedBook?userId=${user.userId}">借阅信息</a></li>
+                <li><a href="${pageContext.request.contextPath}/user/showHistorysByUserId?userId=${user.userId}">借阅历史</a></li>
+            </ul>
+        </div>
+
+        <div class="table-responsive">
+            <%--<form class="navbar-form navbar-right" action="${pageContext.request.contextPath}/user/foundBook?userId=${user.userId}&book" method="post">
+                书名:<input name="bookName">
+                作者:<input name="author">
+                出版社:<input name="press">
+                书籍类别:<input name="bookClass">
+                书籍状态:<input name="bookStatus">
+                <input type="submit" value="搜索书籍">
+            </form>--%>
+            <div class="container-fluid">
+                <form class="navbar-form navbar-left" role="search" action="${pageContext.request.contextPath}/user/foundBook?userId=${user.userId}&book" method="post">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="书名" name="bookName">
+                        <input type="text" class="form-control" placeholder="作者" name="author">
+                        <input type="text" class="form-control" placeholder="出版社" name="press">
+                        <input type="text" class="form-control" placeholder="书籍类别" name="bookClass">
+                        <input type="text" class="form-control" placeholder="书籍状态" name="bookStatus">
+                        <button type="submit" class="btn btn-default">搜索</button>
+                    </div>
+                </form>
+            </div>
+            <div class="table-responsive container-fluid">
+                <table class="table table-striped">
+                    <%--<tr class="info">
+                        <td>编号</td>
+                        <td>书名</td>
+                        <td>作者</td>
+                        <td>出版社</td>
+                        <td>书籍类别</td>
+                        <td>书籍状态</td>
+                        <td>操作</td>
+                    </tr>--%>
+                    <thead>
+                    <tr>
+                        <th>编号</th>
+                        <th>封面</th>
+                        <th>书名</th>
+                        <th>作者</th>
+                        <th>出版社</th>
+                        <th>书籍类别</th>
+                        <th>书籍状态</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <%--var是循环体内的变量 items是谁被循环 varStatus是专门做编号的--%>
+                    <tbody>
+                    <c:forEach var="b" items="${booklist}" varStatus="vs">
+                        <tr>
+                            <td>${vs.count}</td>
+                            <td><img src="${b.bookCover}" alt="${b.bookName}.png" height="100px"></td>
+                            <td>${b.bookName}</td>
+                            <td>${b.author}</td>
+                            <td>${b.press}</td>
+                            <td>${b.bookClass}</td>
+                            <td>${b.bookStatus}</td>
+                            <td>
+                                <a class="btn btn-warning btn-xs" href="borrowBook?bookId=${b.bookId}&userId=${user.userId}">借阅</a>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+<script src="https://cdn.jsdelivr.cn/npm/jquery@1.12.4/dist/jquery.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
 </body>
 </html>
