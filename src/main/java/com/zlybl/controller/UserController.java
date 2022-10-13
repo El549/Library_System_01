@@ -83,8 +83,9 @@ public class UserController {
 
     //修改密码
     @RequestMapping("changeUserPasswordSucces")
-    public String updateUser(User user){
-        return userServiceInf.changeUserPassword(user)>0?"redirect:userQuery" : "userJsp/error";
+    public String updateUser(User user,HttpSession session){
+        session.invalidate();
+        return userServiceInf.changeUserPassword(user)>0?"redirect:login" : "userJsp/error";
     }
 
     //注销用户
