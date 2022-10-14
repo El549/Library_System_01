@@ -173,7 +173,7 @@
                                     </ul>
                                 </nav>
                             </c:if>
-                        <c:if test="${!pi.isLastPage && pi.isFirstPage}">
+                        <c:if test="${pi.isLastPage && !pi.isFirstPage}">
                             <nav aria-label="...">
                                 <ul class="pager">
                                     <li class="disabled"><a href="javascript:return false;">首页</a></li>
