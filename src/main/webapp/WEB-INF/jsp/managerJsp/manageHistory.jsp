@@ -137,7 +137,7 @@
                             <td><fmt:formatDate value="${h.borrowedTime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                             <td><fmt:formatDate value="${h.returnedTime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                             <td>
-                                <a class="btn btn-warning btn-xs" href="showHistoryByHistoryId_method?historyId=${h.historyId}"">修改</a>
+                                <a class="btn btn-warning btn-xs" href="showHistoryByHistoryId_method?historyId=${h.historyId}">修改</a>
                                 <a class="btn btn-danger btn-xs" href="deleteHistory_method?historyId=${h.historyId}">删除</a>
                             </td>
                             <%--<td>
@@ -173,7 +173,7 @@
                                     </ul>
                                 </nav>
                             </c:if>
-                        <c:if test="${!pi.isLastPage && pi.isFirstPage}">
+                        <c:if test="${pi.isLastPage && !pi.isFirstPage}">
                             <nav aria-label="...">
                                 <ul class="pager">
                                     <li class="disabled"><a href="javascript:return false;">首页</a></li>
